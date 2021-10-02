@@ -163,9 +163,6 @@ router.put('/update-rating/:id/:rate', async (req, res)=>{
             const x = parseFloat(rate.supplierRating);
             const y = parseFloat(req.params.rate);
             const newRate = (x+y)/2;
-            console.log(newRate.toFixed(2));
-            console.log(x);
-            console.log(y);
 
             await supplierModel.findByIdAndUpdate(req.params.id,{$set:{supplierRating:newRate.toFixed(2)}}).then(date=>{
                 res.status(200).send({
