@@ -78,7 +78,7 @@ class _SitemanagerEditInventryState extends State<SitemanagerEditInventry> {
                                   height: size.height / 3,
                                   width: size.width,
                                   child: Image.asset(
-                                      "images/sitemanager_add_inventry.png")),
+                                      "images/suppliersignin.png")),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),

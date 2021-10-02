@@ -12,6 +12,19 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+//Routes
+const admin_routes = require('./routes/admin_route');
+const accountant_routes = require('./routes/accountant_route');
+const sitemanager_routes = require('./routes/sitemanager_route');
+const apply_routes = require('./routes/apply_route');
+const supplier_routes = require('./routes/supplier_route');
+
+//Routes middleware
+app.use(admin_routes);
+app.use(accountant_routes);
+app.use(sitemanager_routes);
+app.use(apply_routes);
+app.use(supplier_routes);
 
 //Error Handler(After all middleware routes)
 app.use(errorHandler);
@@ -26,3 +39,13 @@ process.on("unhandledRejection", (err, promise) => {
     console.log(`Logged Error: ${err}`);
     server.close(() => process.exit(1));
 });
+
+//accessing student.js
+const inventory = require("./routes/inventory_route");
+const purchase_order = require("./routes/purchase_order_route");
+
+
+//using express accesing the route
+
+app.use("/inventory",inventory);
+app.use("/purchase-order",purchase_order);
