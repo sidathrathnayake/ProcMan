@@ -92,8 +92,8 @@ class _SitemanagerCreateInventryState extends State<SitemanagerCreateInventry> {
                               child: SizedBox(
                                   height: size.height / 3,
                                   width: size.width,
-                                  child: Image.asset(
-                                      "images/suppliersignin.png")),
+                                  child:
+                                      Image.asset("images/suppliersignin.png")),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
