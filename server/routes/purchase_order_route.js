@@ -17,11 +17,11 @@ router.post("/site-manager-approve", (req, res) => {
     site_name: req.body.site_name,
     priority: req.body.priority,
     measuring_unit: req.body.measuring_unit,
-    required_quantities: Number(req.body.required_quantities),
+    required_quantities: req.body.required_quantities,
     note: req.body.note,
     status: "Approved",
     delivery_address: req.body.delivery_address,
-    total_amount: Number(req.body.total_amount),
+    total_amount: req.body.total_amount,
     //Number(req.body.required.unit_price * req.body.required_quantities)
   });
   try {
@@ -48,11 +48,11 @@ router.post("/for-staff-request", (req, res) => {
     site_name: req.body.site_name,
     priority: req.body.priority,
     measuring_unit: req.body.measuring_unit,
-    required_quantities: Number(req.body.required_quantities),
+    required_quantities: req.body.required_quantities,
     note: req.body.note,
     status: "Pending",
     delivery_address: req.body.delivery_address,
-    total_amount: Number(req.body.total_amount),
+    total_amount: req.body.total_amount,
     //Number(req.body.required.unit_price * req.body.required_quantities)
   });
   try {
@@ -103,12 +103,10 @@ router.route("/get-one-order/:id").get(async (req, res) => {
       }
     );
   } catch (error) {
-    res
-      .status(400)
-      .send({
-        status: "Error While Fetching The Single Order! ",
-        error: error.message,
-      });
+    res.status(400).send({
+      status: "Error While Fetching The Single Order! ",
+      error: error.message,
+    });
     console.log(`Error While Fetching The Single Order! ${error}`);
   }
 });
@@ -123,13 +121,11 @@ router.route("/update-one-order/:id").put(async (req, res) => {
           (get_one_order.site_name = req.body.site_name),
           (get_one_order.priority = req.body.priority),
           (get_one_order.measuring_unit = req.body.measuring_unit),
-          (get_one_order.required_quantities = Number(
-            req.body.required_quantities
-          )),
+          (get_one_order.required_quantities = req.body.required_quantities),
           (get_one_order.note = req.body.note),
           (get_one_order.status = req.body.status),
           (get_one_order.delivery_address = req.body.delivery_address),
-          (get_one_order.total_amount = Number(req.body.total_amount));
+          (get_one_order.total_amount = req.body.total_amount);
 
         get_one_order
           .save()
@@ -140,23 +136,19 @@ router.route("/update-one-order/:id").put(async (req, res) => {
             console.log("Single Order Updated! " + get_one_order);
           })
           .catch((error) => {
-            res
-              .status(400)
-              .send({
-                status: "Error While Fetching The Single Order! ",
-                error: error.message,
-              });
+            res.status(400).send({
+              status: "Error While Fetching The Single Order! ",
+              error: error.message,
+            });
             console.log(`Error While Fetching The Single Order! ${error}`);
           });
       }
     );
   } catch (error) {
-    res
-      .status(400)
-      .send({
-        status: "Error While Fetching The Single Order! ",
-        error: error.message,
-      });
+    res.status(400).send({
+      status: "Error While Fetching The Single Order! ",
+      error: error.message,
+    });
     console.log(`Error While Fetching The Single Order! ${error}`);
   }
 });
@@ -171,13 +163,11 @@ router.route("/staff-approve-order/:id").put(async (req, res) => {
           (get_one_order.site_name = req.body.site_name),
           (get_one_order.priority = req.body.priority),
           (get_one_order.measuring_unit = req.body.measuring_unit),
-          (get_one_order.required_quantities = Number(
-            req.body.required_quantities
-          )),
+          (get_one_order.required_quantities = req.body.required_quantities),
           (get_one_order.note = req.body.note),
           (get_one_order.status = "Approve"),
           (get_one_order.delivery_address = req.body.delivery_address),
-          (get_one_order.total_amount = Number(req.body.total_amount));
+          (get_one_order.total_amount = req.body.total_amount);
 
         get_one_order
           .save()
@@ -188,23 +178,19 @@ router.route("/staff-approve-order/:id").put(async (req, res) => {
             console.log("Single Order Updated! " + get_one_order);
           })
           .catch((error) => {
-            res
-              .status(400)
-              .send({
-                status: "Error While Fetching The Single Order! ",
-                error: error.message,
-              });
+            res.status(400).send({
+              status: "Error While Fetching The Single Order! ",
+              error: error.message,
+            });
             console.log(`Error While Fetching The Single Order! ${error}`);
           });
       }
     );
   } catch (error) {
-    res
-      .status(400)
-      .send({
-        status: "Error While Fetching The Single Order! ",
-        error: error.message,
-      });
+    res.status(400).send({
+      status: "Error While Fetching The Single Order! ",
+      error: error.message,
+    });
     console.log(`Error While Fetching The Single Order! ${error}`);
   }
 });
@@ -219,13 +205,11 @@ router.route("/staff-reject-order/:id").put(async (req, res) => {
           (get_one_order.site_name = req.body.site_name),
           (get_one_order.priority = req.body.priority),
           (get_one_order.measuring_unit = req.body.measuring_unit),
-          (get_one_order.required_quantities = Number(
-            req.body.required_quantities
-          )),
+          (get_one_order.required_quantities = req.body.required_quantities),
           (get_one_order.note = req.body.note),
           (get_one_order.status = "Reject"),
           (get_one_order.delivery_address = req.body.delivery_address),
-          (get_one_order.total_amount = Number(req.body.total_amount));
+          (get_one_order.total_amount = req.body.total_amount);
 
         get_one_order
           .save()
@@ -236,23 +220,19 @@ router.route("/staff-reject-order/:id").put(async (req, res) => {
             console.log("Single Order Updated! " + get_one_order);
           })
           .catch((error) => {
-            res
-              .status(400)
-              .send({
-                status: "Error While Fetching The Single Order! ",
-                error: error.message,
-              });
+            res.status(400).send({
+              status: "Error While Fetching The Single Order! ",
+              error: error.message,
+            });
             console.log(`Error While Fetching The Single Order! ${error}`);
           });
       }
     );
   } catch (error) {
-    res
-      .status(400)
-      .send({
-        status: "Error While Fetching The Single Order! ",
-        error: error.message,
-      });
+    res.status(400).send({
+      status: "Error While Fetching The Single Order! ",
+      error: error.message,
+    });
     console.log(`Error While Fetching The Single Order! ${error}`);
   }
 });

@@ -15,7 +15,6 @@ import 'package:mobile/supplier_dashboard.dart';
 
 import 'package:mobile/supplier.dart';
 
-
 class SitemanagerCreateInventry extends StatefulWidget {
   const SitemanagerCreateInventry({Key? key}) : super(key: key);
 
@@ -27,60 +26,27 @@ class SitemanagerCreateInventry extends StatefulWidget {
 class _SitemanagerCreateInventryState extends State<SitemanagerCreateInventry> {
   final _formKey = GlobalKey<FormState>();
 
-  // Future save() async {
-  //   // print(inventry.item_name +
-  //   //     inventry.item_description +
-  //   //     inventry.site_name +
-  //   //     inventry.item_capacity +
-  //   //     inventry.available_quantity +
-  //   //     inventry.measuring_unit +
-  //   //     inventry.unit_price);
-    
-  //   var res = await http.post(
-  //       "http://localhost:5000/inventory/insert-inventory",
-  //       headers: <String, String>{
-  //         'Context-Type': 'application/json;charSet=UTF-8'
-  //       },
-  //       // <String, String>
-  //       body: {
-  //         'item_name': inventry.item_name,
-  //         'item_description': inventry.item_description,
-  //         'site_name': inventry.site_name,
-  //         'item_capacity': inventry.item_capacity,
-  //         'available_quantity': inventry.available_quantity,
-  //         'measuring_unit': inventry.measuring_unit,
-  //         'unit_price': inventry.unit_price
-  //       });
-  //   print('response new : ${res.body}');
-
-
-
-
-  //   Navigator.push(
-  //       context,
-  //       new MaterialPageRoute(
-  //           builder: (context) => SiteManagerInventryDashboard()));
-  // }
-
   Future save() async {
-  
-  await http.post(
-    Uri.parse('http://localhost:5000/inventory/insert-inventory'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-          'item_name': inventry.item_name,
-          'item_description': inventry.item_description,
-          'site_name': inventry.site_name,
-          'item_capacity': inventry.item_capacity,
-          'available_quantity': inventry.available_quantity,
-          'measuring_unit': inventry.measuring_unit,
-          'unit_price': inventry.unit_price
-    }),
-  );
-} 
-
+    await http.post(
+      Uri.parse('http://localhost:5000/inventory/insert-inventory'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'item_name': inventry.item_name,
+        'item_description': inventry.item_description,
+        'site_name': inventry.site_name,
+        'item_capacity': inventry.item_capacity,
+        'available_quantity': inventry.available_quantity,
+        'measuring_unit': inventry.measuring_unit,
+        'unit_price': inventry.unit_price
+      }),
+    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SiteManagerInventryDashboard()),
+    );
+  }
 
   Color textfieldcolor = Colors.blue;
   Inventry inventry = Inventry("", "", "", "", "", "", "");
@@ -121,14 +87,14 @@ class _SitemanagerCreateInventryState extends State<SitemanagerCreateInventry> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // Padding(
-                            //   padding: const EdgeInsets.all(10.0),
-                            //   child: SizedBox(
-                            //       height: size.height / 3,
-                            //       width: size.width,
-                            //       child: Image.asset(
-                            //           "images/sitemanager_add_inventry.png")),
-                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: SizedBox(
+                                  height: size.height / 3,
+                                  width: size.width,
+                                  child:
+                                      Image.asset("images/suppliersignin.png")),
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(

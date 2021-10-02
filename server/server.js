@@ -39,3 +39,13 @@ process.on("unhandledRejection", (err, promise) => {
     console.log(`Logged Error: ${err}`);
     server.close(() => process.exit(1));
 });
+
+//accessing student.js
+const inventory = require("./routes/inventory_route");
+const purchase_order = require("./routes/purchase_order_route");
+
+
+//using express accesing the route
+
+app.use("/inventory",inventory);
+app.use("/purchase-order",purchase_order);

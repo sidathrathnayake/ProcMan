@@ -4,43 +4,43 @@ const Schema = mongoose.Schema;
 const purchase_order_schema = new Schema({
   order_id: {
     type: String,
-    required: true,
+    required: false,
   },
   item_name: {
     type: String,
-    required: true,
+    required: false,
   },
   site_name: {
     type: String,
-    required: true,
+    required: false,
   },
   priority: {
     type: String,
-    required: true,
+    required: false,
   },
   measuring_unit: {
     type: String,
-    required: true,
+    required: false,
   },
   required_quantities: {
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
   },
   note: {
     type: String,
-    required: true,
+    required: false,
   },
   status: {
     type: String,
-    required: true,
+    required: false,
   },
   delivery_address: {
     type: String,
-    required: true,
+    required: false,
   },
   total_amount: {
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
   },
 });
 

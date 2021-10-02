@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/sitemanager_create_inventry.dart';
+import 'package:mobile/sitemanager_create_order.dart';
 import 'package:mobile/sitemanager_dashboard.dart';
 import 'package:mobile/sitemanager_forgotpassword.dart';
 import 'package:mobile/sitemanager_inventry_dashboard.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SitemanagerDashboard(),
+      home: SitemanagerCreateOrder(),
     );
   }
 }
