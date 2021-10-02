@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'sitemanager_menu.dart';
 
-class SitemanagerMenuCard extends StatelessWidget {
-  const SitemanagerMenuCard({
+class SitemanagerOrderMenuCard extends StatelessWidget {
+  const SitemanagerOrderMenuCard({
     Key? key,
     required this.size,
     required this.itemIndex,
@@ -12,7 +12,7 @@ class SitemanagerMenuCard extends StatelessWidget {
 
   final Size size;
   final int itemIndex;
-  final SitemanagerMenuData menudata;
+  final SitemanagerOrderMenuData menudata;
 
   @override
   Widget build(BuildContext context) {

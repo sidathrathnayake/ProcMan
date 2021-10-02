@@ -3,15 +3,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/sitemanager_inventry_menu_card.dart';
 import 'sitemanager_menu.dart';
-import 'sitemanager_menu_card.dart';
+import 'sitemanager_inventry_menu_card.dart';
 import 'sitemanager_navigational_drawer.dart';
 
-class SitemanagerDashboard extends StatefulWidget {
-  const SitemanagerDashboard({Key? key}) : super(key: key);
+class SiteManagerInventryDashboard extends StatefulWidget {
+  const SiteManagerInventryDashboard({Key? key}) : super(key: key);
 
   @override
-  _SitemanagerDashboardState createState() => _SitemanagerDashboardState();
+  _SiteManagerInventryDashboard createState() => _SiteManagerInventryDashboard();
 }
 
 final slideImages = [
@@ -24,7 +25,7 @@ final slideImages = [
 
 var scaffoldKey = GlobalKey<ScaffoldState>();
 
-class _SitemanagerDashboardState extends State<SitemanagerDashboard> {
+class _SiteManagerInventryDashboard extends State<SiteManagerInventryDashboard> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,7 +34,7 @@ class _SitemanagerDashboardState extends State<SitemanagerDashboard> {
         drawer: SitemanagerNavigationalDrawer(),
         appBar: AppBar(
           elevation: 0,
-          title: Text('Dashboard'),
+          title: Text('Dashboard1'),
           centerTitle: true,
           leading: IconButton(
             icon: Image.asset("icons/pagetop.png"),
@@ -78,11 +79,11 @@ class _SitemanagerDashboardState extends State<SitemanagerDashboard> {
                     ),
                     SizedBox(),
                     ListView.builder(
-                        itemCount: menuDatas.length,
-                        itemBuilder: (context, index) => SitemanagerMenuCard(
+                        itemCount: menuInventryDatas.length,
+                        itemBuilder: (context, index) => SitemanagerInventryMenuCard(
                               size: size,
                               itemIndex: index,
-                              menudata: menuDatas[index],
+                              menudata: menuInventryDatas[index],
                             ))
                   ]),
                 )

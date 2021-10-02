@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/sitemanager_create_inventry.dart';
 import 'package:mobile/sitemanager_dashboard.dart';
 import 'package:mobile/sitemanager_forgotpassword.dart';
+import 'package:mobile/sitemanager_inventry_dashboard.dart';
+import 'package:mobile/sitemanager_order_dashboard.dart';
 import 'package:mobile/sitemanager_resetpassword.dart';
 import 'package:mobile/sitemanager_signin.dart';
 import 'package:mobile/sitemanager_verify_forgotpassword.dart';

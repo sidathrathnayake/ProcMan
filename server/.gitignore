@@ -11,7 +11,7 @@
 # production
 /build
 
-# ignore ALL .env files
+# ignore ALL config.env files
 *.env
 
 # misc
