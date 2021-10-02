@@ -1,0 +1,93 @@
+
+.sidebar-nav{
+    height: 100%;
+    width: 350px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: -100%;
+    background-color: #222;
+    overflow-x: hidden;
+    padding-top: 10%;
+    transition: 0.7s;
+}
+
+.sidebar-nav.active{
+    left: 0;
+    transition: 0.7s;
+}
+
+.sidebar-nav ul li{
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(225,225,225,0.05);
+}
+
+.sidebar-nav ul li a{
+    color: white;
+    display: block;
+    padding: 5%;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.sidebar-nav ul li a:hover{
+    color: black;
+    background-color: goldenrod;
+}
+
+.sidebar-nav a{
+    color: white;
+    display: block;
+    padding: 3%;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.sidebar-nav .sidebar-close{
+    position: absolute;
+    top: 0;
+    right: 1.5%;
+
+}
+
+.sidebar-slide a{
+    color: #fff;
+    font-size: 36px;
+    padding-top: 1%;
+}
+
+.sidebar-slide a:hover{
+    color: goldenrod;
+}
+
+.page-head{
+    
+    padding-left: 0.4%;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: #222;
+}
+
+.page-header {
+    padding-top: 0.4%;
+    height: 60px;
+    width: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.page-header h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.page-header h1 a:hover {
+    color: goldenrod;
+}
