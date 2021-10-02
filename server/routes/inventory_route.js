@@ -3,7 +3,6 @@ const router = require("express").Router();
 const Inventory = require("../models/inventory_model");
 
 router.post("/insert-inventory", (req, res) => {
-  
   const newInventory = new Inventory({
     item_name: req.body.item_name,
     item_description: req.body.item_description,
@@ -13,7 +12,7 @@ router.post("/insert-inventory", (req, res) => {
     measuring_unit: req.body.measuring_unit,
     unit_price: req.body.unit_price,
   });
-  
+
   try {
     newInventory.save().then(() => {
       res.status(200).json("Inventory added successfully!");
@@ -23,19 +22,18 @@ router.post("/insert-inventory", (req, res) => {
     res.status(400).json(`Error While Adding A New Inventory! : ${error}`);
     console.log(error);
   }
-  // const user = new Inventory(req.body);
-
-  //   user.save((err) => {
-  //       if(err){
-  //           return next(new Error('Something went wrong!. Please check and try again.', 400));
-  //       }
-  //       return res.status(201).json({
-  //           success: [true, 'Added successfully'],
-  //           user
-  //       });
-  //   });
   console.log(req.body);
-  
+});
+
+router.route("/get-all-inventories").get((req, res) => {
+  try {
+    Inventory.find().then((inventory) => {
+      res.json(inventory);
+    });
+  } catch (error) {
+    res.status(400).json(`Error While Fetching All Inventories! : ${error}`);
+    console.log(`Error While Fetching All Inventories! : ${error}`);
+  }
 });
 
 router.route("/get-all-inventories/:site_name").get((req, res) => {
@@ -65,12 +63,10 @@ router.route("/get-one-inventory/:id").get(async (req, res) => {
       }
     );
   } catch (error) {
-    res
-      .status(400)
-      .send({
-        status: "Error While Fetching The Single Inventory! ",
-        error: error.message,
-      });
+    res.status(400).send({
+      status: "Error While Fetching The Single Inventory! ",
+      error: error.message,
+    });
     console.log(`Error While Fetching The Single Inventory! ${error}`);
   }
 });
@@ -85,9 +81,7 @@ router.route("/update-one-inventory/:id").put(async (req, res) => {
         (get_one_inventory.item_description = req.body.item_description),
         (get_one_inventory.site_name = req.body.site_name),
         (get_one_inventory.item_capacity = req.body.item_capacity),
-        (get_one_inventory.available_quantity = 
-          req.body.available_quantity
-        ),
+        (get_one_inventory.available_quantity = req.body.available_quantity),
         (get_one_inventory.measuring_unit = req.body.measuring_unit),
         (get_one_inventory.unit_price = req.body.unit_price);
 
@@ -100,22 +94,18 @@ router.route("/update-one-inventory/:id").put(async (req, res) => {
           console.log("Single Inventory Updated! " + get_one_inventory);
         })
         .catch((error) => {
-          res
-            .status(400)
-            .send({
-              status: "Error While Fetching The Single Inventory! ",
-              error: error.message,
-            });
+          res.status(400).send({
+            status: "Error While Fetching The Single Inventory! ",
+            error: error.message,
+          });
           console.log(`Error While Fetching The Single Inventory! ${error}`);
         });
     });
   } catch (error) {
-    res
-      .status(400)
-      .send({
-        status: "Error While Fetching The Single Inventory! ",
-        error: error.message,
-      });
+    res.status(400).send({
+      status: "Error While Fetching The Single Inventory! ",
+      error: error.message,
+    });
     console.log(`Error While Fetching The Single Inventory! ${error}`);
   }
 });

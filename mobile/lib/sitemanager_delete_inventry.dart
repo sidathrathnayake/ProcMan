@@ -78,7 +78,7 @@ class _SitemanagerDeleteInventryState extends State<SitemanagerDeleteInventry> {
                                   height: size.height / 3,
                                   width: size.width,
                                   child: Image.asset(
-                                      "images/sitemanager_add_inventry.png")),
+                                      "images/suppliersignin.png")),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
