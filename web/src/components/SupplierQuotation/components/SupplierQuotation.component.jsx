@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-
+import axios from "axios";
 export default class SupplierQuotationComponent extends Component {
     constructor(props) {
         super(props);
     }
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <div>

@@ -148,4 +148,39 @@ const sendToken  = (supplier, statusCode, res) =>{
     });
 }
 
+/** Supplier rating*/
+router.put('/update-rating/:id/:rate', async (req, res)=>{
+    try{
+        const rate = await supplierModel.findById(req.params.id).select("supplierRating");
+        if(parseInt(rate.supplierRating) === 0){
+            await supplierModel.findByIdAndUpdate(req.params.id,{$set:{supplierRating:req.params.rate}}).then(data=>{
+                res.status(200).send({
+                    success:true,
+                    data:rate
+                })
+            })
+        }else if(parseFloat(rate.supplierRating) > 0) {
+            const x = parseFloat(rate.supplierRating);
+            const y = parseFloat(req.params.rate);
+            const newRate = (x+y)/2;
+            console.log(newRate.toFixed(2));
+            console.log(x);
+            console.log(y);
+
+            await supplierModel.findByIdAndUpdate(req.params.id,{$set:{supplierRating:newRate.toFixed(2)}}).then(date=>{
+                res.status(200).send({
+                    success:true,
+                    data:newRate
+                })
+            })
+        }
+    }catch (error){
+        res.status(500).send({
+            success:false,
+            message:error.message
+        })
+    }
+
+})
+
 module.exports = router;
