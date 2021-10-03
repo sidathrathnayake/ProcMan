@@ -12,6 +12,7 @@ import 'package:mobile/supplier_dashboard.dart';
 import 'package:mobile/supplier_forgotpassword.dart';
 import 'package:mobile/supplier_resetpassword.dart';
 import 'package:mobile/supplier_verify_forgotpassword.dart';
+import 'package:mobile/supplier_view_orders.dart';
 
 import 'supplier_signin.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SitemanagerCreateOrder(),
+      home: Supplier_view_orders(),
     );
   }
 }

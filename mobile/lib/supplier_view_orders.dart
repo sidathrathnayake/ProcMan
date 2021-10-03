@@ -10,9 +10,19 @@ class Supplier_view_orders extends StatefulWidget {
 
 class _Supplier_view_ordersState extends State<Supplier_view_orders> {
   Color textfieldcolor = Colors.blue;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Supply Orders",
+        ),
+      ),
+      body: SingleChildScrollView(),
+    );
   }
 }
