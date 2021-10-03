@@ -1,19 +1,33 @@
 // ignore: unused_import
 
 class Inventry {
-  String item_name;
-  String item_description;
-  String site_name;
-  String item_capacity;
-  String available_quantity;
-  String measuring_unit;
-  String unit_price;
-  Inventry(
-      this.item_name,
-      this.item_description,
-      this.site_name,
-      this.item_capacity,
-      this.available_quantity,
-      this.measuring_unit,
-      this.unit_price);
+  final String item_name;
+  final String item_description;
+  final String site_name;
+  final String item_capacity;
+  final String available_quantity;
+  final String measuring_unit;
+  final String unit_price;
+
+  Inventry({
+    required this.item_name,
+    required this.item_description,
+    required this.site_name,
+    required this.item_capacity,
+    required this.available_quantity,
+    required this.measuring_unit,
+    required this.unit_price,
+  });
+
+  factory Inventry.fromJson(Map<String, dynamic> json) {
+    return Inventry(
+      item_name: json['item_name'],
+      item_description: json['item_description'],
+      site_name: json['site_name'],
+      item_capacity: json['item_capacity'],
+      available_quantity: json['available_quantity'],
+      measuring_unit: json['measuring_unit'],
+      unit_price: json['unit_price'],
+    );
+  }
 }
