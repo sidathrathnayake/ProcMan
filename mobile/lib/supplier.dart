@@ -9,5 +9,13 @@ class User {
   String userPhone;
   String userPassword;
   String userConfirmPassword;
-  User( this.userAccType, this.userAccNumber, this.userIdType, this.userIdNumber, this.userEmail, this.userPhone, this.userPassword, this.userConfirmPassword);
+  User(
+      this.userAccType,
+      this.userAccNumber,
+      this.userIdType,
+      this.userIdNumber,
+      this.userEmail,
+      this.userPhone,
+      this.userPassword,
+      this.userConfirmPassword);
 }

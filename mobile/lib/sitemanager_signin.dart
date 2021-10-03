@@ -24,7 +24,7 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
   final _formKey = GlobalKey<FormState>();
 
   Future save() async {
-    var res = await http.post("http://localhost:5000/user/userlogin",
+    var res = await http.post(Uri.parse("http://localhost:5000/user/userlogin"),
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8'
         },
@@ -32,26 +32,25 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
           'userEmail': user.userEmail,
           'userPassword': user.userPassword
         });
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => SitemanagerDashboard()));
+    Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => SitemanagerDashboard()));
   }
 
   Color textfieldcolor = Colors.blue;
-  User user = User("", "", "", "","", "", "", "");
+  User user = User("", "", "", "", "", "", "", "");
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-      elevation: 0,
-      centerTitle: true,
-      title: Text("Site Manager",
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Site Manager",
+        ),
       ),
-      
-    ),
       body: SingleChildScrollView(
         child: Container(
-          
           color: Colors.blue,
           height: size.height,
           child: Column(
@@ -61,7 +60,6 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  
                 ),
               ),
               Expanded(
@@ -82,12 +80,12 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                               child: SizedBox(
                                   height: size.height / 3,
                                   width: size.width,
-                                  child: Image.asset("images/sitemanagersignin.png")),
+                                  child: Image.asset(
+                                      "images/sitemanagersignin.png")),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
-                                
                                 controller:
                                     TextEditingController(text: user.userEmail),
                                 onChanged: (value) {
@@ -104,9 +102,7 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                                     return 'Please enter valid email!';
                                   }
                                 },
-                                
                                 style: TextStyle(color: Colors.black),
-
                                 decoration: InputDecoration(
                                   prefixIcon: Image.asset("icons/email.png"),
                                   labelText: "Email",
@@ -221,7 +217,8 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+                              padding:
+                                  const EdgeInsets.fromLTRB(16, 20, 16, 20),
                               child: Container(
                                 height: 60,
                                 width: 400,
@@ -255,7 +252,8 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                                       Navigator.push(
                                           context,
                                           new MaterialPageRoute(
-                                              builder: (context) => SupplierSignIn()));
+                                              builder: (context) =>
+                                                  SupplierSignIn()));
                                     },
                                     child: Text(
                                       "Sign in as a Supplier ?",

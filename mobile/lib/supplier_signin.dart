@@ -23,7 +23,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
   final _formKey = GlobalKey<FormState>();
 
   Future save() async {
-    var res = await http.post("http://localhost:5000/user/userlogin",
+    var res = await http.post(Uri.parse("http://localhost:5000/user/userlogin"),
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8'
         },
@@ -31,36 +31,34 @@ class _SupplierSignInState extends State<SupplierSignIn> {
           'userEmail': user.userEmail,
           'userPassword': user.userPassword
         });
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => SupplierDashboard()));
+    Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => SupplierDashboard()));
   }
 
   Color textfieldcolor = Colors.blue;
-  User user = User("", "", "", "","", "", "", "");
+  User user = User("", "", "", "", "", "", "", "");
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-      elevation: 0,
-      centerTitle: true,
-      title: Text("Supplier",
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Supplier",
+        ),
       ),
-      
-    ),
       body: SingleChildScrollView(
         child: Container(
-          
-          color:  Colors.blue,
+          color: Colors.blue,
           height: size.height,
           child: Column(
             children: [
               Container(
-                color:  Colors.blue,
+                color: Colors.blue,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  
                 ),
               ),
               Expanded(
@@ -81,12 +79,12 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                               child: SizedBox(
                                   height: size.height / 3,
                                   width: size.width,
-                                  child: Image.asset("images/suppliersignin.png")),
+                                  child:
+                                      Image.asset("images/suppliersignin.png")),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
-                                
                                 controller:
                                     TextEditingController(text: user.userEmail),
                                 onChanged: (value) {
@@ -103,9 +101,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                     return 'Please enter valid email!';
                                   }
                                 },
-                                
                                 style: TextStyle(color: Colors.black),
-
                                 decoration: InputDecoration(
                                   prefixIcon: Image.asset("icons/email.png"),
                                   labelText: "Email",
@@ -118,7 +114,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.blue,
+                                      color: Colors.blue,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
@@ -136,7 +132,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.transparent,
+                                      color: Colors.transparent,
                                       width: 2.0,
                                     ),
                                   ),
@@ -170,7 +166,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.blue,
+                                      color: Colors.blue,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
@@ -188,7 +184,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.transparent,
+                                      color: Colors.transparent,
                                       width: 2.0,
                                     ),
                                   ),
@@ -212,7 +208,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                       style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14,
-                                          color:  Colors.blue.shade800),
+                                          color: Colors.blue.shade800),
                                       textAlign: TextAlign.right,
                                     ),
                                   )
@@ -220,12 +216,13 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+                              padding:
+                                  const EdgeInsets.fromLTRB(16, 20, 16, 20),
                               child: Container(
                                 height: 60,
                                 width: 400,
                                 child: FlatButton(
-                                    color:  Colors.blue.shade600,
+                                    color: Colors.blue.shade600,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(30.0)),
@@ -254,14 +251,15 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                       Navigator.push(
                                           context,
                                           new MaterialPageRoute(
-                                              builder: (context) => SitemanagerSignIn()));
+                                              builder: (context) =>
+                                                  SitemanagerSignIn()));
                                     },
                                     child: Text(
                                       "Sign in as a Site Manager ?",
                                       style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14,
-                                          color:  Colors.blue.shade800),
+                                          color: Colors.blue.shade800),
                                     ),
                                   )
                                 ],

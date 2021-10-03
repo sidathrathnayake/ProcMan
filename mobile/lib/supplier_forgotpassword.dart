@@ -21,7 +21,7 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
   final _formKey = GlobalKey<FormState>();
 
   Future save() async {
-    await http.post("http://localhost:5000/user/userforgotpassword",
+    await http.post(Uri.parse("http://localhost:5000/user/userforgotpassword"),
         body: <String, String>{
           'userEmail': user.userEmail,
         });
@@ -29,22 +29,21 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
         context, new MaterialPageRoute(builder: (context) => SupplierSignIn()));
   }
 
-  User user = User("", "", "", "","", "", "", "");
+  User user = User("", "", "", "", "", "", "", "");
   Color textfieldcolor = Colors.blue;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar:  AppBar(
-      elevation: 0,
-      centerTitle: true,
-      title: Text("Forgot Password",
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Forgot Password",
+        ),
       ),
-      
-    ),
       body: SingleChildScrollView(
         child: Container(
-          
           color: Colors.blue,
           height: size.height,
           child: Column(
@@ -54,7 +53,6 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  
                 ),
               ),
               Expanded(
@@ -75,26 +73,24 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
                               child: SizedBox(
                                   height: size.height / 3,
                                   width: size.width,
-                                  child: Image.asset("images/forgotpassword.png")),
+                                  child:
+                                      Image.asset("images/forgotpassword.png")),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 30, 16, 20),
-                      
-                                    child: Text(
-                                      "We will send you a One Time Password to your email.",
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Colors.blue.shade800
-                                          ),
-                                          
-                                    ),
+                              padding:
+                                  const EdgeInsets.fromLTRB(16, 30, 16, 20),
+                              child: Text(
+                                "We will send you a One Time Password to your email.",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: Colors.blue.shade800),
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
-                                
                                 controller:
                                     TextEditingController(text: user.userEmail),
                                 onChanged: (value) {
@@ -111,9 +107,7 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
                                     return 'Please enter valid email!';
                                   }
                                 },
-                                
                                 style: TextStyle(color: Colors.black),
-
                                 decoration: InputDecoration(
                                   prefixIcon: Image.asset("icons/email.png"),
                                   labelText: "Email",
@@ -121,8 +115,8 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
                                       fontWeight: FontWeight.w500,
                                       fontSize: 18,
                                       color: textfieldcolor),
-                                 fillColor: Colors.blue.shade50,
-                                 filled: true,
+                                  fillColor: Colors.blue.shade50,
+                                  filled: true,
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
@@ -152,7 +146,8 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+                              padding:
+                                  const EdgeInsets.fromLTRB(16, 20, 16, 20),
                               child: Container(
                                 height: 60,
                                 width: 400,
@@ -177,7 +172,6 @@ class _SupplierForgotpasswordState extends State<SupplierForgotpassword> {
                                     )),
                               ),
                             ),
-                            
                           ],
                         ),
                       )))
