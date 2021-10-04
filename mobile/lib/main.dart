@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/AddEditPage.dart';
 import 'package:mobile/sitemanager_create_inventry.dart';
 import 'package:mobile/sitemanager_create_order.dart';
+// import 'package:mobile/sitemanager_create_order.dart';
 import 'package:mobile/sitemanager_dashboard.dart';
 import 'package:mobile/sitemanager_inventry_dashboard.dart';
 import 'package:mobile/sitemanager_order_dashboard.dart';
 import 'package:mobile/sitemanager_signin.dart';
+import 'package:mobile/sitemanager_view_inventry_new.dart';
 import 'package:mobile/supplier_dashboard.dart';
 import 'package:mobile/supplier_signin.dart';
 

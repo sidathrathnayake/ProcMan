@@ -100,7 +100,9 @@ class _SitemanagerViewInventriesNewState
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(30.0)),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                  
+                                  },
                                   child: Text(
                                     "Edit",
                                     style: GoogleFonts.workSans(
