@@ -46,7 +46,7 @@ class _SitemanagerCreateOrderState extends State<SitemanagerCreateOrder> {
       MaterialPageRoute(builder: (context) => SiteManagerOrderDashboard()),
     );
   }
-
+  
   Color textfieldcolor = Colors.blue;
   Order order = Order("", "", "", "", "", "", "", "", "", "");
   @override

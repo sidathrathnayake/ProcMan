@@ -56,7 +56,6 @@ class _SitemanagerCreateInventryState extends State<SitemanagerCreateInventry> {
       MaterialPageRoute(builder: (context) => SiteManagerInventryDashboard()),
     );
   }
-
   Color textfieldcolor = Colors.blue;
   InventryModel inventry = InventryModel("", "", "", "", "", "", "");
 

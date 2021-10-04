@@ -66,7 +66,6 @@ class _SitemanagerDashboardState extends State<SitemanagerDashboard> {
                           autoPlayInterval: Duration(seconds: 3),
                           height: size.height / 4,
                         ))),
-                
                 Expanded(
                   child: Stack(children: <Widget>[
                     Container(

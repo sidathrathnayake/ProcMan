@@ -38,7 +38,6 @@ class _SitemanagerViewInventriesNewState
       throw Exception("Error");
     }
   }
-
   Color textfieldcolor = Colors.blue;
   @override
   Widget build(BuildContext context) {
