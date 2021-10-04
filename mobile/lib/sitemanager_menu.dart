@@ -24,17 +24,17 @@ class SitemanagerOrderMenuData{
 List<SitemanagerMenuData> menuDatas = [
   SitemanagerMenuData(
     dash_title: "Inventries",
-    dash_image: "images/accbal.png",
+    dash_image: "images/site1.png",
     dash_url: "SiteManagerInventryDashboard()",
   ),
   SitemanagerMenuData(
     dash_title: "Order Purchases",
-    dash_image: "images/montra.png",
+    dash_image: "images/site2.png",
     dash_url: "TransferServices()",
   ),
   SitemanagerMenuData(
     dash_title: "Update Quantity",
-    dash_image: "images/billpay.png",
+    dash_image: "images/site3.png",
     dash_url: "BillPayments()",
   ),
 ];

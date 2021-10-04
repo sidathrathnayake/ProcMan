@@ -2,6 +2,7 @@ require('dotenv').config({path: "./config.env"});
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
 const errorHandler = require('./middleware/error_handler');
 const ConnectDB = require('./database/procmandb');
 
@@ -18,6 +19,7 @@ const accountant_routes = require('./routes/accountant_route');
 const sitemanager_routes = require('./routes/sitemanager_route');
 const apply_routes = require('./routes/apply_route');
 const supplier_routes = require('./routes/supplier_route');
+const payment_routes = require('./routes/payment_route');
 const supply_orders_route = require('./routes/supplier_orders_route');
 
 //Routes middleware
@@ -26,6 +28,7 @@ app.use(accountant_routes);
 app.use(sitemanager_routes);
 app.use(apply_routes);
 app.use(supplier_routes);
+app.use(payment_routes);
 app.use(supply_orders_route);
 
 //Error Handler(After all middleware routes)

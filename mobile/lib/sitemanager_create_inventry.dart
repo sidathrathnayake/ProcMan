@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'dart:convert';
-import 'dart:html';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ import 'package:mobile/sitemanager_inventry_dashboard.dart';
 import 'package:mobile/sitemanager_inventry_model.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
-import 'package:mobile/supplier.dart';
+import 'package:mobile/suppliers.dart';
 
 class SitemanagerCreateInventry extends StatefulWidget {
   const SitemanagerCreateInventry({Key? key}) : super(key: key);

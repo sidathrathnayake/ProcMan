@@ -1,0 +1,14 @@
+
+.table-container{
+    padding: 1%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-container{
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 100%;
+    height: max-content;
+}

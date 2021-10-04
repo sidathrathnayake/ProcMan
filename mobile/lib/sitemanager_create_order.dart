@@ -10,7 +10,7 @@ import 'package:mobile/sitemanager_order.dart';
 import 'package:mobile/sitemanager_order_dashboard.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
-import 'package:mobile/supplier.dart';
+import 'package:mobile/suppliers.dart';
 
 class SitemanagerCreateOrder extends StatefulWidget {
   const SitemanagerCreateOrder({Key? key}) : super(key: key);

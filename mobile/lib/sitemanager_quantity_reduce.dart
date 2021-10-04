@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/supplier_dashboard.dart';
-import 'package:mobile/supplier.dart';
+import 'package:mobile/sitemanager.dart';
 class SitemanagerQuantityReduceInventry extends StatefulWidget {
   const SitemanagerQuantityReduceInventry({Key? key}) : super(key: key);
 
@@ -33,7 +33,7 @@ class _SitemanagerQuantityReduceInventryState extends State<SitemanagerQuantityR
   // }
 
   Color textfieldcolor = Colors.blue;
-  User user = User("", "", "", "", "", "", "", "");
+  Sitemanager user = Sitemanager("", "", "", "","");
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -83,9 +83,9 @@ class _SitemanagerQuantityReduceInventryState extends State<SitemanagerQuantityR
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
                                 controller:
-                                    TextEditingController(text: user.userEmail),
+                                    TextEditingController(text: user.sitemanagerEmail),
                                 onChanged: (value) {
-                                  user.userEmail = value;
+                                  user.sitemanagerEmail = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {

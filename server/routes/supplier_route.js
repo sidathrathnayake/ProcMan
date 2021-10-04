@@ -55,7 +55,8 @@ router.post('/supplier/supplierregister', async (req, res, next) => {
 //Login
 router.post('/supplier/supplierlogin',async (req,res,next) =>{
     
-    const {supplierEmail, supplierPassword} = req.body;
+    const supplierEmail = req.body.supplierEmail
+    const supplierPassword = req.body.supplierPassword;
 
     if(!supplierEmail || !supplierPassword){
         return next(new Error("Please provide an Email and Password...!",400));
@@ -84,13 +85,13 @@ router.post('/supplier/supplierlogin',async (req,res,next) =>{
 
 //Retrive
 router.get('/supplier/suppliers', (req,res,next) => {
-    supplierModel.find().exec((err, suppliers) => {
+    supplierModel.find().exec((err, supplier) => {
         if(err){
             return next(new Error('Can not find any supplier!', 400));
         }
         return res.status(200).json({
             success:true,
-            suppliers
+            supplier
         });
     });
 });

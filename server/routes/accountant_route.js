@@ -75,6 +75,33 @@ router.post('/accountant/accountantlogin',async (req,res,next) =>{
 
 });
 
+//Retrive
+router.get('/accountant/accountants', (req,res,next) => {
+    accountantModel.find().exec((err, accountant) => {
+        if(err){
+            return next(new Error('Can not find any accountant!', 400));
+        }
+        return res.status(200).json({
+            success:true,
+            accountant
+        });
+    });
+});
+
+
+//Delete
+router.delete('/accountant/deleteaccountant/:id', (req, res, next) => {
+    accountantModel.findByIdAndRemove(req.params.id).exec((err, deleteaccountant) => {
+        if(err){
+            return next(new Error('Can not delete the data', 400));
+        }
+        return res.status(200).json({
+            success:[true, " Deleted successfully!"],
+            deleteaccountant
+        });
+    }); 
+});
+
 //Token send to the model class
 const sendToken  = (accountant, statusCode, res) =>{
     const token = accountant.getSignedToken();
