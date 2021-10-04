@@ -51,3 +51,6 @@ const purchase_order = require("./routes/purchase_order_route");
 
 app.use("/inventory",inventory);
 app.use("/purchase-order",purchase_order);
+
+const raised_order_route = require('./routes/raised_order_route');
+app.use("/raise-order",raised_order_route);
