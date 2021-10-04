@@ -57,8 +57,9 @@ router.post('/supplier/supplierlogin',async (req,res,next) =>{
     
     const supplierEmail = req.body.supplierEmail
     const supplierPassword = req.body.supplierPassword;
-
+    console.log(supplierEmail,supplierPassword);
     if(!supplierEmail || !supplierPassword){
+    
         return next(new Error("Please provide an Email and Password...!",400));
     }
 
@@ -74,7 +75,7 @@ router.post('/supplier/supplierlogin',async (req,res,next) =>{
         if(!isMatch){
             return next(new Error("Invalid Password...!",401));
         }
-
+        
         sendToken(supplier, 200, res);
 
     } catch (error) {
