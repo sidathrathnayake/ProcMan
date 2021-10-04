@@ -1,11 +1,13 @@
 // ignore: unused_import
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/supplier_auth.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
 import 'package:mobile/supplier.dart';
@@ -21,34 +23,12 @@ class SupplierSignIn extends StatefulWidget {
 class _SupplierSignInState extends State<SupplierSignIn> {
   final _formKey = GlobalKey<FormState>();
 
-Suppliers user = Suppliers("", "", "", "", "", "", "", "", "", "");
+  var supplierEmail, supplierPassword, supplierToken;
 
-  Future save() async {
-
-    var res = await http.post("http://10.0.2.2:5000/supplier/supplierlogin",
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8'
-        },
-        body: <String, String>{
-          'supplierEmail': user.supplierEmail,
-          'supplierPassword': user.supplierPassword
-        });
-        if(res.statusCode == 200) return res.body;
-        //   Fluttertoast.showToast(
-        //   msg: "Logged in Successfully",
-        //   toastLength: Toast.LENGTH_SHORT,
-        //   gravity: ToastGravity.CENTER,
-        //   timeInSecForIosWeb: 4,
-        //   backgroundColor: Colors.red,
-        //   textColor: Colors.white,
-        //   fontSize: 16.0);
-        // print(res.body);
-        //   Navigator.push(context,
-        //   new MaterialPageRoute(builder: (context) => SupplierDashboard()));
-    }
+  TextEditingController email = new TextEditingController();
 
   Color textfieldcolor = Colors.blue;
-  
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -97,10 +77,10 @@ Suppliers user = Suppliers("", "", "", "", "", "", "", "", "", "");
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
-                                controller: TextEditingController(
-                                    text: user.supplierEmail),
+                                controller:
+                                    TextEditingController(text: supplierEmail),
                                 onChanged: (value) {
-                                  user.supplierEmail = value;
+                                  supplierEmail = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -155,9 +135,9 @@ Suppliers user = Suppliers("", "", "", "", "", "", "", "", "", "");
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
                                 controller: TextEditingController(
-                                    text: user.supplierPassword),
+                                    text: supplierPassword),
                                 onChanged: (value) {
-                                  user.supplierPassword = value;
+                                  supplierPassword = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -216,8 +196,36 @@ Suppliers user = Suppliers("", "", "", "", "", "", "", "", "", "");
                                             BorderRadius.circular(30.0)),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
-                                        
-                                        save();
+                                        AuthService()
+                                            .login(
+                                                supplierEmail, supplierPassword)
+                                            .then((val) {
+                                          if (val.data['success']) {
+                                            supplierToken = val.data['token'];
+                                            Fluttertoast.showToast(
+                                                msg: "Authenticated",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.CENTER,
+                                                timeInSecForIosWeb: 4,
+                                                backgroundColor: Colors.red,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+                                                Navigator.push(
+                                                context,
+                                                new MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SupplierDashboard()));
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg: "Failed",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.CENTER,
+                                                timeInSecForIosWeb: 4,
+                                                backgroundColor: Colors.red,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+                                          }
+                                        });
                                       } else {
                                         print("Email or Password ");
                                       }
