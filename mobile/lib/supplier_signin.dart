@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
-import 'package:mobile/suppliers.dart';
+import 'package:mobile/supplier.dart';
 import 'sitemanager_signin.dart';
 
 class SupplierSignIn extends StatefulWidget {

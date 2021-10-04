@@ -34,7 +34,6 @@ const App = () => {
     <Router>
       <div className="app">
         <Switch>
-
             <Route exact path="/" component={Welcome}/>
             <Route exact path="/adminhome" component={AdminHome}/>
             <Route exact path="/accountanthome" component={AccountantHome}/>
@@ -56,7 +55,6 @@ const App = () => {
             <Route exact path="/payment" component={Stripe_Container}/>
             
             
-
         </Switch>   
       </div>
     </Router>
