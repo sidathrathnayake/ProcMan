@@ -41,7 +41,7 @@ class SitemanagerViewInventries extends StatefulWidget {
 
 class _SitemanagerViewInventriesState extends State<SitemanagerViewInventries> {
   Future<List<Inventry>> listDataJSON() async {
-    final url = "http://localhost:5000/inventory/get-all-inventories/Maga-02";
+    final url = Uri.parse("http://localhost:5000/inventory/get-all-inventories/Maga-02");
     final response = await http.get(url);
     if (response.statusCode == 200) {
       List listData = json.decode(response.body);

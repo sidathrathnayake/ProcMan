@@ -25,7 +25,7 @@ Suppliers user = Suppliers("", "", "", "", "", "", "", "", "", "");
 
   Future save() async {
 
-    var res = await http.post("http://10.0.2.2:5000/supplier/supplierlogin",
+    var res = await http.post(Uri.parse("http://10.0.2.2:5000/supplier/supplierlogin"),
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8'
         },

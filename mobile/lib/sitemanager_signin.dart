@@ -31,7 +31,7 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
     };
     try {
       final res = await http.post(
-        "http://localhost:5000/sitemanager/sitemanagerlogin",
+        Uri.parse("http://localhost:5000/sitemanager/sitemanagerlogin"),
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8'
         },
