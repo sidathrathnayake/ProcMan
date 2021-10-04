@@ -1,6 +1,6 @@
 // ignore: unused_import
 import 'dart:io';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,9 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
-import 'package:mobile/supplier.dart';
+import 'package:mobile/suppliers.dart';
 import 'sitemanager_signin.dart';
-import 'supplier_forgotpassword.dart';
 
 class SupplierSignIn extends StatefulWidget {
   const SupplierSignIn({Key? key}) : super(key: key);
@@ -22,45 +21,56 @@ class SupplierSignIn extends StatefulWidget {
 class _SupplierSignInState extends State<SupplierSignIn> {
   final _formKey = GlobalKey<FormState>();
 
+Suppliers user = Suppliers("", "", "", "", "", "", "", "", "", "");
+
   Future save() async {
-    var res = await http.post("http://localhost:5000/user/userlogin",
+
+    var res = await http.post("http://10.0.2.2:5000/supplier/supplierlogin",
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8'
         },
         body: <String, String>{
-          'userEmail': user.userEmail,
-          'userPassword': user.userPassword
+          'supplierEmail': user.supplierEmail,
+          'supplierPassword': user.supplierPassword
         });
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => SupplierDashboard()));
-  }
+        if(res.statusCode == 200) return res.body;
+        //   Fluttertoast.showToast(
+        //   msg: "Logged in Successfully",
+        //   toastLength: Toast.LENGTH_SHORT,
+        //   gravity: ToastGravity.CENTER,
+        //   timeInSecForIosWeb: 4,
+        //   backgroundColor: Colors.red,
+        //   textColor: Colors.white,
+        //   fontSize: 16.0);
+        // print(res.body);
+        //   Navigator.push(context,
+        //   new MaterialPageRoute(builder: (context) => SupplierDashboard()));
+    }
 
   Color textfieldcolor = Colors.blue;
-  User user = User("", "", "", "","", "", "", "");
+  
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-      elevation: 0,
-      centerTitle: true,
-      title: Text("Supplier",
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Supplier",
+        ),
       ),
-      
-    ),
       body: SingleChildScrollView(
         child: Container(
-          
-          color:  Colors.blue,
+          color: Colors.blue,
           height: size.height,
           child: Column(
             children: [
               Container(
-                color:  Colors.blue,
+                color: Colors.blue,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  
                 ),
               ),
               Expanded(
@@ -81,16 +91,16 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                               child: SizedBox(
                                   height: size.height / 3,
                                   width: size.width,
-                                  child: Image.asset("images/suppliersignin.png")),
+                                  child:
+                                      Image.asset("images/suppliersignin.png")),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
-                                
-                                controller:
-                                    TextEditingController(text: user.userEmail),
+                                controller: TextEditingController(
+                                    text: user.supplierEmail),
                                 onChanged: (value) {
-                                  user.userEmail = value;
+                                  user.supplierEmail = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -103,9 +113,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                     return 'Please enter valid email!';
                                   }
                                 },
-                                
                                 style: TextStyle(color: Colors.black),
-
                                 decoration: InputDecoration(
                                   prefixIcon: Image.asset("icons/email.png"),
                                   labelText: "Email",
@@ -118,7 +126,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.blue,
+                                      color: Colors.blue,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
@@ -136,7 +144,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.transparent,
+                                      color: Colors.transparent,
                                       width: 2.0,
                                     ),
                                   ),
@@ -147,9 +155,9 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
                                 controller: TextEditingController(
-                                    text: user.userPassword),
+                                    text: user.supplierPassword),
                                 onChanged: (value) {
-                                  user.userPassword = value;
+                                  user.supplierPassword = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -170,7 +178,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.blue,
+                                      color: Colors.blue,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
@@ -188,7 +196,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide(
-                                      color:  Colors.transparent,
+                                      color: Colors.transparent,
                                       width: 2.0,
                                     ),
                                   ),
@@ -196,44 +204,22 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 245),
-                              child: Row(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          new MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SupplierForgotpassword()));
-                                    },
-                                    child: Text(
-                                      "Forgot Password ?",
-                                      style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14,
-                                          color:  Colors.blue.shade800),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+                              padding:
+                                  const EdgeInsets.fromLTRB(16, 20, 16, 20),
                               child: Container(
                                 height: 60,
                                 width: 400,
                                 child: FlatButton(
-                                    color:  Colors.blue.shade600,
+                                    color: Colors.blue.shade600,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(30.0)),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
+                                        
                                         save();
                                       } else {
-                                        print("no");
+                                        print("Email or Password ");
                                       }
                                     },
                                     child: Text(
@@ -254,14 +240,15 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                       Navigator.push(
                                           context,
                                           new MaterialPageRoute(
-                                              builder: (context) => SitemanagerSignIn()));
+                                              builder: (context) =>
+                                                  SitemanagerSignIn()));
                                     },
                                     child: Text(
                                       "Sign in as a Site Manager ?",
                                       style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14,
-                                          color:  Colors.blue.shade800),
+                                          color: Colors.blue.shade800),
                                     ),
                                   )
                                 ],

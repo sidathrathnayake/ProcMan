@@ -79,13 +79,13 @@ router.post('/sitemanager/sitemanagerlogin',async (req,res,next) =>{
 
 //Retrive
 router.get('/sitemanager/sitemanagers', (req,res,next) => {
-    sitemanagerModel.find().exec((err, sitemanagers) => {
+    sitemanagerModel.find().exec((err, sitemanager) => {
         if(err){
             return next(new Error('Can not find any sitemanager!', 400));
         }
         return res.status(200).json({
             success:true,
-            sitemanagers
+            sitemanager
         });
     });
 });
