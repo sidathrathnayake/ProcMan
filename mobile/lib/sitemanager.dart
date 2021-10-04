@@ -1,13 +1,10 @@
 // ignore: unused_import
 
-class User {
-  String userAccType;
-  String userAccNumber;
-  String userIdType;
-  String userIdNumber;
-  String userEmail;
-  String userPhone;
-  String userPassword;
-  String userConfirmPassword;
-  User( this.userAccType, this.userAccNumber, this.userIdType, this.userIdNumber, this.userEmail, this.userPhone, this.userPassword, this.userConfirmPassword);
+class Sitemanager {
+  String sitemanagerName;
+  String sitemanagerEmail;
+  String sitemanagerPhone;
+  String site;
+  String sitemanagerPassword;
+  Sitemanager( this.sitemanagerName, this.sitemanagerEmail, this.sitemanagerPhone, this.site, this.sitemanagerPassword);
 }

@@ -1,6 +1,6 @@
 // ignore: unused_import
 import 'dart:io';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,9 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
-import 'package:mobile/supplier.dart';
+import 'package:mobile/Sitemanager.dart';
 import 'sitemanager_dashboard.dart';
-import 'sitemanager_forgotpassword.dart';
 import 'supplier_signin.dart';
 
 class SitemanagerSignIn extends StatefulWidget {
@@ -23,21 +22,36 @@ class SitemanagerSignIn extends StatefulWidget {
 class _SitemanagerSignInState extends State<SitemanagerSignIn> {
   final _formKey = GlobalKey<FormState>();
 
-  Future save() async {
-    var res = await http.post(Uri.parse("http://localhost:5000/user/userlogin"),
+ Sitemanager user = Sitemanager("", "", "", "", "");
+
+  Future save(sitemanagerEmail, sitemanagerPassword) async {
+    Map data = {
+      'sitemanagerEmail': user.sitemanagerEmail,
+      'sitemanagerPassword': user.sitemanagerPassword
+    };
+    try {
+      final res = await http.post(
+        "http://localhost:5000/sitemanager/sitemanagerlogin",
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8'
         },
-        body: <String, String>{
-          'userEmail': user.userEmail,
-          'userPassword': user.userPassword
-        });
-    Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => SitemanagerDashboard()));
+      );
+
+      body:data;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: "Error occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 4,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
   }
 
   Color textfieldcolor = Colors.blue;
-  User user = User("", "", "", "", "", "", "", "");
+ 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -86,10 +100,10 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
-                                controller:
-                                    TextEditingController(text: user.userEmail),
+                                controller: TextEditingController(
+                                    text: user.sitemanagerEmail),
                                 onChanged: (value) {
-                                  user.userEmail = value;
+                                  user.sitemanagerEmail = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -144,9 +158,9 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
                                 controller: TextEditingController(
-                                    text: user.userPassword),
+                                    text: user.sitemanagerPassword),
                                 onChanged: (value) {
-                                  user.userPassword = value;
+                                  user.sitemanagerPassword = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -193,30 +207,6 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 245),
-                              child: Row(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          new MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SitemanagerForgotpassword()));
-                                    },
-                                    child: Text(
-                                      "Forgot Password ?",
-                                      style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14,
-                                          color: Colors.blue.shade800),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
                               padding:
                                   const EdgeInsets.fromLTRB(16, 20, 16, 20),
                               child: Container(
@@ -229,7 +219,44 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                                             BorderRadius.circular(30.0)),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
-                                        save();
+                                        save(user.sitemanagerEmail,
+                                                user.sitemanagerPassword)
+                                            .then((value) {
+                                          if (value.save['success']) {
+                                            var token =
+                                                value.data['sitemanagerToken'];
+                                            Fluttertoast.showToast(
+                                                msg: "Logged in Successfully",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.CENTER,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor: Colors.red,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+
+                                            Navigator.push(
+                                                context,
+                                                new MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SitemanagerDashboard()));
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg:
+                                                    "Invalid Password or Email! Please try again.",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.CENTER,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor: Colors.red,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+
+                                            Navigator.push(
+                                                context,
+                                                new MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SitemanagerSignIn()));
+                                          }
+                                        });
                                       } else {
                                         print("no");
                                       }

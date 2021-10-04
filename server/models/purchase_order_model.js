@@ -10,6 +10,10 @@ const purchase_order_schema = new Schema({
     type: String,
     required: false,
   },
+  supplier_name: {
+    type : String,
+    required: false
+  },
   site_name: {
     type: String,
     required: false,
@@ -42,6 +46,14 @@ const purchase_order_schema = new Schema({
     type: String,
     required: false,
   },
+  damaged : {
+    type : String,
+    required: false
+  },
+  supplier_note : {
+    type : String,
+    required : false
+  }
 });
 
 const purchase_order_table = mongoose.model(

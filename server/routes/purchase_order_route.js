@@ -14,6 +14,7 @@ router.post("/site-manager-approve", (req, res) => {
   const newOrderPurchase = new Purchase_order({
     order_id: "ORD" + gen(),
     item_name: req.body.item_name,
+    supplier_name: req.body.supplier_name,
     site_name: req.body.site_name,
     priority: req.body.priority,
     measuring_unit: req.body.measuring_unit,
@@ -22,6 +23,8 @@ router.post("/site-manager-approve", (req, res) => {
     status: "Approved",
     delivery_address: req.body.delivery_address,
     total_amount: req.body.total_amount,
+    damaged : req.body.damaged,
+    supplier_note : req.body.supplier_note
     //Number(req.body.required.unit_price * req.body.required_quantities)
   });
   try {
@@ -45,6 +48,7 @@ router.post("/for-staff-request", (req, res) => {
   const newOrderPurchase = new Purchase_order({
     order_id: "ORD" + gen(),
     item_name: req.body.item_name,
+    supplier_name: req.body.supplier_name,
     site_name: req.body.site_name,
     priority: req.body.priority,
     measuring_unit: req.body.measuring_unit,
@@ -53,6 +57,8 @@ router.post("/for-staff-request", (req, res) => {
     status: "Pending",
     delivery_address: req.body.delivery_address,
     total_amount: req.body.total_amount,
+    damaged : req.body.damaged,
+    supplier_note : req.body.supplier_note
     //Number(req.body.required.unit_price * req.body.required_quantities)
   });
   try {
@@ -141,7 +147,8 @@ router.route("/update-one-order/:id").put(async (req, res) => {
     const getoneorder = await Purchase_order.findByIdAndUpdate(order_id).then(
       (get_one_order) => {
         //get_one_order.order_id = req.body.order_id,
-        (get_one_order.item_name = req.body.item_name),
+          (get_one_order.item_name = req.body.item_name),
+          (get_one_order.supplier_name = req.body.supplier_name),
           (get_one_order.site_name = req.body.site_name),
           (get_one_order.priority = req.body.priority),
           (get_one_order.measuring_unit = req.body.measuring_unit),
@@ -150,7 +157,9 @@ router.route("/update-one-order/:id").put(async (req, res) => {
           (get_one_order.status = req.body.status),
           (get_one_order.delivery_address = req.body.delivery_address),
           (get_one_order.total_amount = req.body.total_amount);
-
+          (get_one_order.damaged = req.body.damaged);
+          (get_one_order.supplier_note = req.body.supplier_note);
+          
         get_one_order
           .save()
           .then(() => {
@@ -183,7 +192,8 @@ router.route("/staff-approve-order/:id").put(async (req, res) => {
     const getoneorder = await Purchase_order.findByIdAndUpdate(order_id).then(
       (get_one_order) => {
         //get_one_order.order_id = req.body.order_id,
-        (get_one_order.item_name = req.body.item_name),
+          (get_one_order.item_name = req.body.item_name),
+          (get_one_order.supplier_name = req.body.supplier_name),
           (get_one_order.site_name = req.body.site_name),
           (get_one_order.priority = req.body.priority),
           (get_one_order.measuring_unit = req.body.measuring_unit),
@@ -192,6 +202,8 @@ router.route("/staff-approve-order/:id").put(async (req, res) => {
           (get_one_order.status = "Approve"),
           (get_one_order.delivery_address = req.body.delivery_address),
           (get_one_order.total_amount = req.body.total_amount);
+          (get_one_order.damaged = req.body.damaged);
+          (get_one_order.supplier_note = req.body.supplier_note);
 
         get_one_order
           .save()
@@ -225,7 +237,8 @@ router.route("/staff-reject-order/:id").put(async (req, res) => {
     const getoneorder = await Purchase_order.findByIdAndUpdate(order_id).then(
       (get_one_order) => {
         //get_one_order.order_id = req.body.order_id,
-        (get_one_order.item_name = req.body.item_name),
+          (get_one_order.item_name = req.body.item_name),
+          (get_one_order.supplier_name = req.body.supplier_name),
           (get_one_order.site_name = req.body.site_name),
           (get_one_order.priority = req.body.priority),
           (get_one_order.measuring_unit = req.body.measuring_unit),
@@ -234,6 +247,8 @@ router.route("/staff-reject-order/:id").put(async (req, res) => {
           (get_one_order.status = "Reject"),
           (get_one_order.delivery_address = req.body.delivery_address),
           (get_one_order.total_amount = req.body.total_amount);
+          (get_one_order.damaged = req.body.damaged);
+          (get_one_order.supplier_note = req.body.supplier_note);
 
         get_one_order
           .save()

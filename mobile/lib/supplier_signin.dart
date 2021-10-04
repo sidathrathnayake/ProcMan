@@ -1,6 +1,6 @@
 // ignore: unused_import
 import 'dart:io';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,7 +10,6 @@ import 'package:mobile/supplier_dashboard.dart';
 
 import 'package:mobile/supplier.dart';
 import 'sitemanager_signin.dart';
-import 'supplier_forgotpassword.dart';
 
 class SupplierSignIn extends StatefulWidget {
   const SupplierSignIn({Key? key}) : super(key: key);
@@ -22,21 +21,34 @@ class SupplierSignIn extends StatefulWidget {
 class _SupplierSignInState extends State<SupplierSignIn> {
   final _formKey = GlobalKey<FormState>();
 
+Suppliers user = Suppliers("", "", "", "", "", "", "", "", "", "");
+
   Future save() async {
-    var res = await http.post(Uri.parse("http://localhost:5000/user/userlogin"),
+
+    var res = await http.post("http://10.0.2.2:5000/supplier/supplierlogin",
         headers: <String, String>{
           'Context-Type': 'application/json;charSet=UTF-8'
         },
         body: <String, String>{
-          'userEmail': user.userEmail,
-          'userPassword': user.userPassword
+          'supplierEmail': user.supplierEmail,
+          'supplierPassword': user.supplierPassword
         });
-    Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => SupplierDashboard()));
-  }
+        if(res.statusCode == 200) return res.body;
+        //   Fluttertoast.showToast(
+        //   msg: "Logged in Successfully",
+        //   toastLength: Toast.LENGTH_SHORT,
+        //   gravity: ToastGravity.CENTER,
+        //   timeInSecForIosWeb: 4,
+        //   backgroundColor: Colors.red,
+        //   textColor: Colors.white,
+        //   fontSize: 16.0);
+        // print(res.body);
+        //   Navigator.push(context,
+        //   new MaterialPageRoute(builder: (context) => SupplierDashboard()));
+    }
 
   Color textfieldcolor = Colors.blue;
-  User user = User("", "", "", "", "", "", "", "");
+  
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -85,10 +97,10 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
-                                controller:
-                                    TextEditingController(text: user.userEmail),
+                                controller: TextEditingController(
+                                    text: user.supplierEmail),
                                 onChanged: (value) {
-                                  user.userEmail = value;
+                                  user.supplierEmail = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -143,9 +155,9 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
                                 controller: TextEditingController(
-                                    text: user.userPassword),
+                                    text: user.supplierPassword),
                                 onChanged: (value) {
-                                  user.userPassword = value;
+                                  user.supplierPassword = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -192,30 +204,6 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 245),
-                              child: Row(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          new MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SupplierForgotpassword()));
-                                    },
-                                    child: Text(
-                                      "Forgot Password ?",
-                                      style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14,
-                                          color: Colors.blue.shade800),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
                               padding:
                                   const EdgeInsets.fromLTRB(16, 20, 16, 20),
                               child: Container(
@@ -228,9 +216,10 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                             BorderRadius.circular(30.0)),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
+                                        
                                         save();
                                       } else {
-                                        print("no");
+                                        print("Email or Password ");
                                       }
                                     },
                                     child: Text(

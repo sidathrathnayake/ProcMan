@@ -38,7 +38,7 @@ router.get('/apply/applies', (req,res,next) => {
 // Retrive specific data by id
 router.get('/apply/applydata/:id',(req,res) =>{
     const applyid = req.params.id;
-    applyrModel.findById(applyid,(err, apply) => {
+    applyModel.findById(applyid,(err, apply) => {
         if(err){
             return next(new Error("Can not find a data with this id...!",400));
         }

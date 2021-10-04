@@ -25,6 +25,7 @@ dependencies:
   http: ^0.13.3
   flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
+  fluttertoast: ^8.0.8
   flutter:
     sdk: flutter
 

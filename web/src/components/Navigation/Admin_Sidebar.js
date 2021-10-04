@@ -28,9 +28,9 @@ export default function Admin_Sidebar() {
                     <ul onClick={openSidebar}>
                         <li><a href="/adminhome"><i className="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
                         <li><a href="#"><i className="fa fa-user-shield"></i>&nbsp;&nbsp;Staff Login</a></li>
-                        <li><a href="#"><i className="fa fa-coins"></i>&nbsp;&nbsp;Accountant Login</a></li>
-                        <li><a href="#"><i className="fas fa-truck"></i>&nbsp;&nbsp;Apply to be a supplier</a></li>
-                        <li><a href="#s"><i className="fas fa-city"></i>&nbsp;&nbsp;Our Sites</a></li>
+                        <li><a href="/viewaccountant"><i className="fa fa-coins"></i>&nbsp;&nbsp;Accountants</a></li>
+                        <li><a href="/viewsupplier"><i className="fas fa-truck"></i>&nbsp;&nbsp;Suppliers</a></li>
+                        <li><a href="/viewsitemanager"><i className="fas fa-city"></i>&nbsp;&nbsp;Site Managers</a></li>
                     </ul>
                 </nav>
 
