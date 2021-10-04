@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Sidebar from '../Navigation/Sidebar';
+import Sidebar from '../Navigation/Admin_Sidebar';
 import axios from 'axios';
 
 /**Defining the initial state research paper amount */
@@ -17,7 +17,6 @@ export default class Add_Raised_Orders extends Component {
     /**Constructor for getting the records */
     constructor(props) {
         super(props);
-        this.onSupplierChange = this.onSupplierChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = initialState;
     }
@@ -46,10 +45,6 @@ export default class Add_Raised_Orders extends Component {
             alert(error.message)
         })
     }
-    
-    onSupplierChange(e) {
-        this.setState({ supplierName: e.value });
-    }
 
     onSubmit(e) {
         e.preventDefault();
@@ -76,66 +71,63 @@ export default class Add_Raised_Orders extends Component {
 
     render() {
         return (
-            <div className="wrapper">
-                <Sidebar/> 
-                <div className="adminhome-container" style={{backgroundColor:'rgba(0,0,0,0.25)'}}>
-                    <div className="adminnav">
+            <div>
+                <div className="page-head">
+                    <Sidebar/> 
+                    <div className="page-header">
                         <h1>
                             <a href="#">
                                 <i className="fa fa-coins"></i> &nbsp;&nbsp;Add To Raised Orders
                             </a>
                         </h1>
-                    
                     </div>
-                    <div>
-                        <div className="raisedOrderAddCont" style={{ marginTop: "1%",marginBottom: "1%" , overflow:"visible"  }}>
-                            <form style={{padding:'20px'}} onSubmit={this.onSubmit}>
-                                <div class="form-group row" >
-                                    <label for="form-control-order_id" class="col-4 form-label">Order Id</label>
-                                    <div class="col-6">
-                                        <input type="text" className="form-control addInput" id="form-control-order_id" name="order_id" value={this.state.order_id} readOnly/>
-                                    </div>
-                                </div><br/>
-                                <div class="form-group row" >
-                                    <label for="form-control-shippingAddress" class="col-4 form-label">Item Name</label>
-                                    <div class="col-6">
-                                        <input type="text" className="form-control addInput" id="form-control-item_name" name="item_name" value={this.state.item_name} readOnly/>
-                                    </div>
-                                </div><br/>
-                                <div class="form-group row" >
-                                    <label for="form-control-measuring_unit" class="col-4 form-label">Measuring Unit</label>
-                                    <div class="col-6">
-                                        <input type="text" className="form-control addInput" id="form-control-measuring_unit" name="measuring_unit" value={this.state.measuring_unit} readOnly/>
-                                    </div>
-                                </div><br/>
-                                <div class="form-group row" >
-                                    <label for="form-control-required_quantities" class="col-4 form-label">Required Quantities</label>
-                                    <div class="col-6">
-                                        <input type="text" className="form-control addInput" id="form-control-required_quantities" name="required_quantities" value={this.state.required_quantities} readOnly/>
-                                    </div>
-                                </div><br/>
-                                <div class="form-group row" >
-                                    <label for="form-control-delivery_address" class="col-4 form-label">Delivery Address</label>
-                                    <div class="col-6">
-                                        <input type="text" className="form-control addInput" id="form-control-delivery_address" name="delivery_address" value={this.state.delivery_address} readOnly/>
-                                    </div>
-                                </div><br/>
-                                <div class="form-group row" >
-                                    <label for="form-control-total_amount" class="col-4 form-label">Total Amount</label>
-                                    <div class="col-6">
-                                        <input type="text" className="form-control addInput" id="form-control-total_amount" name="total_amount" value={"Rs."+this.state.total_amount} readOnly/>
-                                    </div>
-                                </div><br/>
-                                <div class="form-group row" >
-                                    <label for="form-control-total_amount" class="col-4 form-label">Supplier</label>
-                                    <div class="col-6">
-                                        <input type="text" className="form-control addInput" id="form-control-total_amount" name="total_amount" value={this.state.total_amount} readOnly/>
-                                    </div>
-                                </div><br/>
-                                <button type="submit">Raise Order</button>
-                            </form>
-                        </div>
-                    </div>
+                </div>    
+                <div className="form-container">
+                    <form className="form-data" onSubmit={this.onSubmit}>
+                        <div class="form-group row" >
+                            <label for="form-control-order_id" class="col-4 form-label" style={{marginTop:"8px"}}>Order Id</label>
+                            <div class="col-6">
+                                <input type="text" className="form-control addInput" id="form-control-order_id" name="order_id" style={{width:"340px"}} value={this.state.order_id} readOnly/>
+                            </div>
+                        </div><br/>
+                        <div class="form-group row" >
+                            <label for="form-control-shippingAddress" class="col-4 form-label" style={{marginTop:"8px"}}>Item Name</label>
+                            <div class="col-6">
+                                <input type="text" className="form-control addInput" id="form-control-item_name" name="item_name" style={{width:"340px"}} value={this.state.item_name} readOnly/>
+                            </div>
+                        </div><br/>
+                        <div class="form-group row" >
+                            <label for="form-control-measuring_unit" class="col-4 form-label" style={{marginTop:"8px"}}>Measuring Unit</label>
+                            <div class="col-6">
+                                <input type="text" className="form-control addInput" id="form-control-measuring_unit" name="measuring_unit" style={{width:"340px"}} value={this.state.measuring_unit} readOnly/>
+                            </div>
+                        </div><br/>
+                        <div class="form-group row" >
+                            <label for="form-control-required_quantities" class="col-4 form-label" style={{marginTop:"8px"}}>Required Quantities</label>
+                            <div class="col-6">
+                                <input type="text" className="form-control addInput" id="form-control-required_quantities" name="required_quantities" style={{width:"340px"}} value={this.state.required_quantities} readOnly/>
+                            </div>
+                        </div><br/>
+                        <div class="form-group row" >
+                            <label for="form-control-delivery_address" class="col-4 form-label" style={{marginTop:"8px"}}>Delivery Address</label>
+                            <div class="col-6">
+                                <input type="text" className="form-control addInput" id="form-control-delivery_address" name="delivery_address" style={{width:"340px"}} value={this.state.delivery_address} readOnly/>
+                            </div>
+                        </div><br/>
+                        <div class="form-group row" >
+                            <label for="form-control-total_amount" class="col-4 form-label" style={{marginTop:"8px"}}>Total Amount</label>
+                            <div class="col-6">
+                                <input type="text" className="form-control addInput" id="form-control-total_amount" name="total_amount"  style={{width:"340px"}}value={"Rs."+this.state.total_amount} readOnly/>
+                            </div>
+                        </div><br/>
+                        <div class="form-group row" >
+                            <label for="form-control-total_amount" class="col-4 form-label" style={{marginTop:"8px"}}>Supplier</label>
+                            <div class="col-6">
+                                <input type="text" className="form-control addInput" id="form-control-total_amount" name="total_amount" style={{width:"340px"}} value={this.state.total_amount} readOnly/>
+                            </div>
+                        </div><br/>
+                        <button type="submit" className="btn btn-primary btndata">Raise Order</button>
+                    </form>
                 </div>
             </div>
         )

@@ -1,6 +1,9 @@
 const router = require("express").Router();
 
 const Raised_Order = require("../models/raised_order");
+const Supplier = require("../models/Supplier");
+const sendEmail = require('../utils/send_email');
+const Error = require('../utils/error_response');
 
 router.post("/add", async(req, res) => {
 
@@ -14,12 +17,34 @@ router.post("/add", async(req, res) => {
     supplier_id:req.body.supplier_id
   });
   await newRaisedOrder.save()
-        .then(data => {
-            res.status(200).send({ data: data });
-        })
-        .catch(error => {
-            res.status(500).send({ error: error.message });
-        });
+    .then(data => {
+        const supplier = Supplier.findById(req.body.supplier_id);
+    
+        const message = `
+            <h1>You have a New Order.</h1>
+            <label>Order Id: ${req.body.supplier_id}</label>
+            <p>Please refer the website for additional details.</p>
+        `
+        try {
+            sendEmail({
+                to: supplier.supplierEmail,
+                subject:"New Order has been Assigned",
+                text: message
+            });
+
+            res.status(200).json({
+                success:true,
+                data: "Order has raised and Email sent to supplier"
+            });
+
+        } catch (error) {
+            return next(new Error("Order has raised but Email could not be send.!",500));
+        }
+    })
+    .catch(error => {
+        res.status(500).send({ error: error.message });
+    });
+
 });
 
 router.get("/view", async(req,res) => {

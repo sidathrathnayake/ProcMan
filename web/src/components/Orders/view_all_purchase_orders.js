@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Sidebar from '../Navigation/Sidebar';
+import Sidebar from '../Navigation/Admin_Sidebar';
 import axios from 'axios';
 import TableScrollbar from 'react-table-scrollbar';
 
@@ -14,7 +14,7 @@ export default class View_All_Orders extends Component {
     componentDidMount() { 
         axios.get('http://localhost:5000/purchase-order/get-all-orders')
         .then(response => {
-          this.setState({ orders: response.data.data })
+          this.setState({ orders: response.data })
         })
     }
 
@@ -40,19 +40,21 @@ export default class View_All_Orders extends Component {
 
     render() {
         return (
-            <div className="wrapper">
-                <Sidebar/>
-                <div className="adminhome-container">
-                    <div className="adminnav">
+            <div>
+                <div className="page-head">
+                    <Sidebar/>
+                    <div className="page-header">
                         <h1>
-                        <a href="/userdetails">
-                            <i className="fa fa-coins"></i> &nbsp;&nbsp;All Purchased Orders
-                        </a>
+                            <a href="/userdetails">
+                                <i className="fa fa-coins"></i> &nbsp;&nbsp;All Purchased Orders
+                            </a>
                         </h1>
-                    </div>
+                    </div>   
+                </div>
+                <div className="search-add">
                     <div class="table-search">
                         <input class="form-control" type="search" id="orderSearch" onKeyUp={this.search} placeholder="Search by Order ID"/>    
-                    </div>    
+                    </div>
                 </div>
                 <div className="table-container">
                     <TableScrollbar rows={10}>
@@ -63,7 +65,6 @@ export default class View_All_Orders extends Component {
                                     <th>Item Name</th>
                                     <th>Site Name</th>
                                     <th>Priority</th>
-                                    <th>Measuring Unit</th>
                                     <th>Required Quantities</th>
                                     <th>Status</th>
                                     <th>Delivery Address</th>
@@ -71,61 +72,56 @@ export default class View_All_Orders extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                    {this.state.orders.length > 0 && this.state.orders.map((item, index) => (
-                                        <tr>
-                                            <td>
-                                                <div>
-                                                    {item.order_id}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.item_name}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.site_name}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.priority}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.measuring_unit}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.required_quantities}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.note}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.status}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.delivery_address}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.total_amount}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}     
-                                </tbody>
+                                { this.state.orders.map((item, index) => (
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                {item.order_id}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.item_name}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.site_name}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.priority}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.required_quantities}+" "+{item.measuring_unit}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.note}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.status}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.delivery_address}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {item.total_amount}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}     
+                            </tbody>
                         </table>
                     </TableScrollbar>
                 </div>

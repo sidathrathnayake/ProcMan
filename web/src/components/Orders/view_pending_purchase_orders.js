@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Sidebar from '../Navigation/Sidebar';
+import Sidebar from '../Navigation/Admin_Sidebar';
 import axios from 'axios';
 import TableScrollbar from 'react-table-scrollbar';
 
@@ -40,16 +40,18 @@ export default class View_Pending_Orders extends Component {
 
     render() {
         return (
-            <div className="wrapper">
-                <Sidebar/>
-                <div className="adminhome-container">
-                    <div className="adminnav">
+            <div>
+                <div className="page-head">
+                    <Sidebar/>
+                    <div className="page-header">
                         <h1>
-                        <a href="/userdetails">
-                            <i className="fa fa-coins"></i> &nbsp;&nbsp;All Pending Orders
-                        </a>
+                            <a href="/userdetails">
+                                <i className="fa fa-coins"></i> &nbsp;&nbsp;All Pending Orders
+                            </a>
                         </h1>
                     </div>
+                </div>
+                <div className="search-add">
                     <div class="table-search">
                         <input class="form-control" type="search" id="orderSearch" onKeyUp={this.search} placeholder="Search by Order ID"/>    
                     </div>
@@ -63,16 +65,13 @@ export default class View_Pending_Orders extends Component {
                                     <th>Item Name</th>
                                     <th>Site Name</th>
                                     <th>Priority</th>
-                                    <th>Measuring Unit</th>
-                                    <th>Required Quantities</th>
                                     <th>Delivery Address</th>
                                     <th>Total Amount</th>
-                                    <th>Approve</th>
-                                    <th>Reject</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    {this.state.orders.length > 0 && this.state.orders.map((item, index) => (
+                                    { this.state.orders.map((item, index) => (
                                         <tr>
                                             <td>
                                                 <div>
@@ -96,12 +95,7 @@ export default class View_Pending_Orders extends Component {
                                             </td>
                                             <td>
                                                 <div>
-                                                    {item.measuring_unit}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    {item.required_quantities}
+                                                    {item.required_quantities}+" "+{item.measuring_unit}
                                                 </div>
                                             </td>
                                             <td>
@@ -116,12 +110,10 @@ export default class View_Pending_Orders extends Component {
                                             </td>
                                             <td>
                                                 <div>
-                                                    <button>Approve Order</button>
+                                                    <button className="btn btn-success">Approve Order</button>
                                                 </div>
-                                            </td>
-                                            <td>
                                                 <div>
-                                                    <button>Reject Order</button>
+                                                    <button className="btn btn-danger">Reject Order</button>
                                                 </div>
                                             </td>
                                         </tr>
