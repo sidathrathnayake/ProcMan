@@ -22,7 +22,7 @@ class _SitemanagerForgotpasswordState extends State<SitemanagerForgotpassword> {
   final _formKey = GlobalKey<FormState>();
 
   Future save() async {
-    await http.post("http://localhost:5000/user/userforgotpassword",
+    await http.post(Uri.parse("http://localhost:5000/user/userforgotpassword"),
         body: <String, String>{
           'userEmail': user.userEmail,
         });

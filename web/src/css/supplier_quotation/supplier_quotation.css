@@ -1,0 +1,20 @@
+.sup_content{
+    height: 90%;
+    padding-top: 50px;
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: 60% auto;
+    border: 1px solid black;
+}
+.sup_grid_item{
+    height: 80%;
+    border: 1px solid black;
+}
+.supplier_table{
+    height: 50%;
+}
+.supplier_quot_table{
+    overflow: auto;
+}
+.sup_vendor_chart{
+}

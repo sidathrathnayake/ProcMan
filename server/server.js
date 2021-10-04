@@ -11,7 +11,22 @@ ConnectDB();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.json());
+
+//Routes
+const admin_routes = require('./routes/admin_route');
+const accountant_routes = require('./routes/accountant_route');
+const sitemanager_routes = require('./routes/sitemanager_route');
+const apply_routes = require('./routes/apply_route');
+const supplier_routes = require('./routes/supplier_route');
+const supply_orders_route = require('./routes/supplier_orders_route');
+
+//Routes middleware
+app.use(admin_routes);
+app.use(accountant_routes);
+app.use(sitemanager_routes);
+app.use(apply_routes);
+app.use(supplier_routes);
+app.use(supply_orders_route);
 
 //Error Handler(After all middleware routes)
 app.use(errorHandler);
