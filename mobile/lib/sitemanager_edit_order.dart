@@ -13,8 +13,7 @@ class SitemanagerEditOrder extends StatefulWidget {
   const SitemanagerEditOrder({Key? key}) : super(key: key);
 
   @override
-  _SitemanagerEditOrderState createState() =>
-      _SitemanagerEditOrderState();
+  _SitemanagerEditOrderState createState() => _SitemanagerEditOrderState();
 }
 
 class _SitemanagerEditOrderState extends State<SitemanagerEditOrder> {

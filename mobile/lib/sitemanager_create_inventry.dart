@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/sitemanager_inventry.dart';
 import 'package:mobile/sitemanager_inventry_dashboard.dart';
+import 'package:mobile/sitemanager_inventry_model.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
 import 'package:mobile/suppliers.dart';
@@ -25,7 +26,15 @@ class SitemanagerCreateInventry extends StatefulWidget {
 class _SitemanagerCreateInventryState extends State<SitemanagerCreateInventry> {
   final _formKey = GlobalKey<FormState>();
 
-  Future save() async {
+  Future save(
+    // String item_name,
+    // String item_description,
+    // String site_name,
+    // String item_capacity,
+    // String available_quantity,
+    // String measuring_unit,
+    // String unit_price,
+  ) async {
     await http.post(
       Uri.parse('http://localhost:5000/inventory/insert-inventory'),
       headers: <String, String>{
@@ -46,9 +55,9 @@ class _SitemanagerCreateInventryState extends State<SitemanagerCreateInventry> {
       MaterialPageRoute(builder: (context) => SiteManagerInventryDashboard()),
     );
   }
-
   Color textfieldcolor = Colors.blue;
-  Inventry inventry = Inventry("", "", "", "", "", "", "");
+  InventryModel inventry = InventryModel("", "", "", "", "", "", "");
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

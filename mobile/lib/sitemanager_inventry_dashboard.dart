@@ -12,7 +12,8 @@ class SiteManagerInventryDashboard extends StatefulWidget {
   const SiteManagerInventryDashboard({Key? key}) : super(key: key);
 
   @override
-  _SiteManagerInventryDashboard createState() => _SiteManagerInventryDashboard();
+  _SiteManagerInventryDashboard createState() =>
+      _SiteManagerInventryDashboard();
 }
 
 final slideImages = [
@@ -25,7 +26,8 @@ final slideImages = [
 
 var scaffoldKey = GlobalKey<ScaffoldState>();
 
-class _SiteManagerInventryDashboard extends State<SiteManagerInventryDashboard> {
+class _SiteManagerInventryDashboard
+    extends State<SiteManagerInventryDashboard> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -80,7 +82,8 @@ class _SiteManagerInventryDashboard extends State<SiteManagerInventryDashboard> 
                     SizedBox(),
                     ListView.builder(
                         itemCount: menuInventryDatas.length,
-                        itemBuilder: (context, index) => SitemanagerInventryMenuCard(
+                        itemBuilder: (context, index) =>
+                            SitemanagerInventryMenuCard(
                               size: size,
                               itemIndex: index,
                               menudata: menuInventryDatas[index],

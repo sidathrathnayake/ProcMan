@@ -7,7 +7,7 @@ import 'package:mobile/sitemanager_order_dashboard.dart';
 import 'package:mobile/sitemanager_signin.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
-import 'supplier_signin.dart';
+// import 'supplier_signin.dart';
 
 void main() {
   runApp(MyApp());
