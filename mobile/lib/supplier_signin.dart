@@ -210,7 +210,7 @@ class _SupplierSignInState extends State<SupplierSignIn> {
                                                 backgroundColor: Colors.red,
                                                 textColor: Colors.white,
                                                 fontSize: 16.0);
-                                                Navigator.push(
+                                            Navigator.push(
                                                 context,
                                                 new MaterialPageRoute(
                                                     builder: (context) =>

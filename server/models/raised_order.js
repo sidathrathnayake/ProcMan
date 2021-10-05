@@ -29,6 +29,18 @@ const raised_order_schema = new Schema({
   supplierName:{
     type: String,
     required: true,
+  },
+  note: {
+    type: String,
+    required: false,
+  },
+  damaged : {
+    type : String,
+    required: false
+  },
+  supplier_note : {
+    type : String,
+    required : false
   }
 });
 
