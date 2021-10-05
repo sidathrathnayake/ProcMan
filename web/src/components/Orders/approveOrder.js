@@ -60,8 +60,8 @@ export default class Approve_Order extends Component {
         }
         axios.put(`http://localhost:5000/purchase-order/staff-approve-order/${this.state.order_id}`, raised_order)
         .then(response => {
-            window.location = '/adminViewOrder'
-            alert('Order successfully approved!!!')
+            alert('Order successfully approved!!!');
+            window.location = '/view_pending_orders';
         })
         .catch(error => {
             console.log(error.message);

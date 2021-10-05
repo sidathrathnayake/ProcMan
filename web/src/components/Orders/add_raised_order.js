@@ -59,8 +59,8 @@ export default class Add_Raised_Orders extends Component {
         }
         axios.post('http://localhost:5000/raise-order/add/', raised_order)
         .then(response => {
-            window.location = '/adminViewOrder'
-            alert('Order successfully raised!!!')
+            alert('Order successfully raised!!!');
+            window.location = '/view_approved_orders';
         })
         .catch(error => {
             console.log(error.message);

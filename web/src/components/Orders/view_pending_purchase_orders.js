@@ -37,6 +37,13 @@ export default class View_Pending_Orders extends Component {
         }
       }
     
+    navigateToApproveOrderPage(e, order_id) {
+        window.location = `/approve_order/${order_id}`
+    }
+
+    navigateToRejectOrderPage(e, order_id) {
+        window.location = `/reject_order/${order_id}`
+    }
 
     render() {
         return (
@@ -110,10 +117,10 @@ export default class View_Pending_Orders extends Component {
                                             </td>
                                             <td>
                                                 <div>
-                                                    <button className="btn btn-success">Approve Order</button>
+                                                    <button className="btn btn-success" onClick={e => this.navigateToApproveOrderPage(e, item.order_id)}>Approve Order</button>
                                                 </div>
                                                 <div>
-                                                    <button className="btn btn-danger">Reject Order</button>
+                                                    <button className="btn btn-danger" onClick={e => this.navigateToRejectOrderPage(e, item.order_id)}>Reject Order</button>
                                                 </div>
                                             </td>
                                         </tr>
