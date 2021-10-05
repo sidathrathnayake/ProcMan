@@ -62,8 +62,8 @@ export default class Reject_Order extends Component {
         }
         axios.put(`http://localhost:5000/purchase-order/staff-reject-order/${this.state.order_id}`, raised_order)
         .then(response => {
-            window.location = '/adminViewOrder'
             alert('Order successfully rejected!!!')
+            window.location = '/view_pending_orders';
         })
         .catch(error => {
             console.log(error.message);
