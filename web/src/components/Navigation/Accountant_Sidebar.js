@@ -65,10 +65,8 @@ const accountantLogoutHandler = () =>{
                     </div>
                     <ul onClick={openSidebar}>
                         <li><a href="/accountanthome"><i className="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
-                        <li><a href="#"><i className="fa fa-user-shield"></i>&nbsp;&nbsp;Staff Login</a></li>
-                        <li><a href="#"><i className="fa fa-coins"></i>&nbsp;&nbsp;Accountant Login</a></li>
-                        <li><a href="#"><i className="fas fa-truck"></i>&nbsp;&nbsp;Apply to be a supplier</a></li>
-                        <li><a href="/payment"><i className="fas fa-city"></i>&nbsp;&nbsp;Our Sites</a></li>
+                        <li><a href="/viewdeliver"><i className="fa fa-user-shield"></i>&nbsp;&nbsp;Deliveries</a></li>
+                        <li><a href="/viewpayment"><i className="fa fa-coins"></i>&nbsp;&nbsp;Payments</a></li>
                         <li><a href="#"  onClick={accountantLogoutHandler} ><i className="fa fa-power-off"></i>&nbsp;&nbsp;Sign Out</a></li>
                     </ul>
                 </nav>
