@@ -27,7 +27,7 @@ class SitemanagerViewInventriesNew extends StatefulWidget {
 class _SitemanagerViewInventriesNewState
     extends State<SitemanagerViewInventriesNew> {
   Future<List<Inventry>> listDataJSON() async {
-    final url = "http://localhost:5000/inventory/get-all-inventories/Maga-02";
+    final url = Uri.parse("http://localhost:5000/inventory/get-all-inventories/Maga-02");
     final response = await http.get(url);
     if (response.statusCode == 200) {
       List listData = json.decode(response.body);
@@ -100,7 +100,9 @@ class _SitemanagerViewInventriesNewState
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(30.0)),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                  
+                                  },
                                   child: Text(
                                     "Edit",
                                     style: GoogleFonts.workSans(

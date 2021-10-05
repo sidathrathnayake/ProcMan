@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useState, useEffect, Component } from 'react'
+import React, {useState, useEffect, Component } from 'react';
+import logo from '../../images/procman.png';
 
 export default function Welcome_Sidebar() {
 
@@ -24,7 +25,9 @@ export default function Welcome_Sidebar() {
                     <a href="#" className="sidebar-close" onClick={openSidebar}>
                         <i className="fas fa-times-circle"></i>
                     </a>
-    
+                    <div>
+                    <img className="sidebar-image" src={logo} alt="Logo"/>
+                    </div>
                     <ul onClick={openSidebar}>
                         <li><a href="/"><i className="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
                         <li><a href="/adminlogin"><i className="fa fa-user-shield"></i>&nbsp;&nbsp;Staff Login</a></li>

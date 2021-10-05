@@ -57,8 +57,9 @@ router.post('/supplier/supplierlogin',async (req,res,next) =>{
     
     const supplierEmail = req.body.supplierEmail
     const supplierPassword = req.body.supplierPassword;
-
+    console.log(supplierEmail,supplierPassword);
     if(!supplierEmail || !supplierPassword){
+    
         return next(new Error("Please provide an Email and Password...!",400));
     }
 
@@ -74,7 +75,7 @@ router.post('/supplier/supplierlogin',async (req,res,next) =>{
         if(!isMatch){
             return next(new Error("Invalid Password...!",401));
         }
-
+        
         sendToken(supplier, 200, res);
 
     } catch (error) {
@@ -102,6 +103,20 @@ router.get('/supplier/supplierdata/:id',(req,res) =>{
     supplierModel.findById(supplierid,(err, supplier) => {
         if(err){
             return next(new Error("Can not find a supplier with this id...!",400));
+        }
+        return res.status(200).json({
+            success:true,
+            supplier
+        });
+    })
+})
+
+// Retrive specific data by item name
+router.get('/supplier/supplierdata2/:itemName',(req,res) =>{
+    const itemName = req.params.itemName;
+    supplierModel.findOne(itemName,(err, supplier) => {
+        if(err){
+            return next(new Error("Can not find a supplier with this item name...!",400));
         }
         return res.status(200).json({
             success:true,

@@ -1,6 +1,7 @@
 // ignore: unused_import
 
 class Inventry {
+  final String id;
   final String item_name;
   final String item_description;
   final String site_name;
@@ -10,6 +11,7 @@ class Inventry {
   final String unit_price;
 
   Inventry({
+    required this.id,
     required this.item_name,
     required this.item_description,
     required this.site_name,
@@ -21,6 +23,7 @@ class Inventry {
 
   factory Inventry.fromJson(Map<String, dynamic> json) {
     return Inventry(
+      id : json['id'],
       item_name: json['item_name'],
       item_description: json['item_description'],
       site_name: json['site_name'],

@@ -1,21 +1,24 @@
 // ignore: unused_import
-
-class User {
-  String userAccType;
-  String userAccNumber;
-  String userIdType;
-  String userIdNumber;
-  String userEmail;
-  String userPhone;
-  String userPassword;
-  String userConfirmPassword;
-  User(
-      this.userAccType,
-      this.userAccNumber,
-      this.userIdType,
-      this.userIdNumber,
-      this.userEmail,
-      this.userPhone,
-      this.userPassword,
-      this.userConfirmPassword);
+class Suppliers {
+  String supplierName;
+  String supplierEmail;
+  String supplierPhone;
+  String itemName;
+  String itemPrice;
+  String itemScale;
+  String totalItemCount;
+  String totalSpend;
+  String supplierRating;
+  String supplierPassword;
+  Suppliers(
+      this.supplierName,
+      this.supplierEmail,
+      this.supplierPhone,
+      this.itemName,
+      this.itemPrice,
+      this.itemScale,
+      this.totalItemCount,
+      this.totalSpend,
+      this.supplierRating,
+      this.supplierPassword);
 }
