@@ -1,6 +1,4 @@
 // ignore: unused_import
-
- 
 class Suppliers {
   String supplierName;
   String supplierEmail;
@@ -12,8 +10,6 @@ class Suppliers {
   String totalSpend;
   String supplierRating;
   String supplierPassword;
-
- 
   Suppliers(
       this.supplierName,
       this.supplierEmail,
