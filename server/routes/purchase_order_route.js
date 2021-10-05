@@ -124,6 +124,29 @@ router.route("/get-all-orders/:site_name").get((req, res) => {
   }
 });
 
+router.get("/get-approved-orders/", async(req,res) => {
+  if (req.params && req.params.user) {
+      await Purchase_order.find({"status":"Approve"})
+      .then(data => {
+          res.status(200).send({ data: data });
+      })
+      .catch(error => {
+          res.status(500).send({ error: error.message });
+      });
+  }
+})
+
+router.get("/get-pending-orders/", async(req,res) => {
+  if (req.params && req.params.user) {
+      await Purchase_order.find({"status":"Pending"})
+      .then(data => {
+          res.status(200).send({ data: data });
+      })
+      .catch(error => {
+          res.status(500).send({ error: error.message });
+      });
+  }
+})
 router.route("/sm-approved-orders/:site_name").get((req, res) => {
   try {
     let site_name = req.params.site_name;
@@ -306,6 +329,48 @@ router.route("/staff-reject-order/:id").put(async (req, res) => {
           (get_one_order.total_amount = req.body.total_amount);
         get_one_order.damaged = req.body.damaged;
         get_one_order.supplier_note = req.body.supplier_note;
+
+        get_one_order
+          .save()
+          .then(() => {
+            res
+              .status(200)
+              .send({ status: "Single Order Updated! ", get_one_order });
+            console.log("Single Order Updated! " + get_one_order);
+          })
+          .catch((error) => {
+            res.status(400).send({
+              status: "Error While Fetching The Single Order! ",
+              error: error.message,
+            });
+            console.log(`Error While Fetching The Single Order! ${error}`);
+          });
+      }
+    );
+  } catch (error) {
+    res.status(400).send({
+      status: "Error While Fetching The Single Order! ",
+      error: error.message,
+    });
+    console.log(`Error While Fetching The Single Order! ${error}`);
+  }
+});
+
+router.route("/staff-raise-order/:id").put(async (req, res) => {
+  try {
+    let order_id = req.params.id;
+    const getoneorder = await Purchase_order.findByIdAndUpdate(order_id).then(
+      (get_one_order) => {
+        //get_one_order.order_id = req.body.order_id,
+        (get_one_order.item_name = req.body.item_name),
+          (get_one_order.site_name = req.body.site_name),
+          (get_one_order.priority = req.body.priority),
+          (get_one_order.measuring_unit = req.body.measuring_unit),
+          (get_one_order.required_quantities = req.body.required_quantities),
+          (get_one_order.note = req.body.note),
+          (get_one_order.status = "Raised"),
+          (get_one_order.delivery_address = req.body.delivery_address),
+          (get_one_order.total_amount = req.body.total_amount);
 
         get_one_order
           .save()
