@@ -20,6 +20,7 @@ const sitemanager_routes = require('./routes/sitemanager_route');
 const apply_routes = require('./routes/apply_route');
 const supplier_routes = require('./routes/supplier_route');
 const payment_routes = require('./routes/payment_route');
+const deliver_route = require('./routes/deliver_route');
 const supply_orders_route = require('./routes/supplier_orders_route');
 
 //Routes middleware
@@ -29,6 +30,7 @@ app.use(sitemanager_routes);
 app.use(apply_routes);
 app.use(supplier_routes);
 app.use(payment_routes);
+app.use(deliver_route);
 app.use(supply_orders_route);
 
 //Error Handler(After all middleware routes)

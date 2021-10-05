@@ -68,7 +68,7 @@ const adminLogoutHandler = () =>{
                         <li><a href="/viewaccountant"><i className="fa fa-coins"></i>&nbsp;&nbsp;Accountants</a></li>
                         <li><a href="/viewsupplier"><i className="fas fa-truck"></i>&nbsp;&nbsp;Suppliers</a></li>
                         <li><a href="/viewsitemanager"><i className="fas fa-city"></i>&nbsp;&nbsp;Site Managers</a></li>
-                        <li><a href="#"  onClick={adminLogoutHandler} ><i className="fa fa-power-off"></i>Sign Out</a></li>
+                        <li><a href="#"  onClick={adminLogoutHandler} ><i className="fa fa-power-off"></i>&nbsp;&nbsp;Sign Out</a></li>
                     </ul>
                 </nav>
 

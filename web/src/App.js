@@ -24,6 +24,7 @@ import SiteManagerRegister from './components/Register/SiteManager_Register';
 import SupplierRegister from './components/Register/Supplier_Register';
 import ViewSupplier from './components/ReadData/View_Supplier';
 import AccountantHome from './components/Home/Accountant_Home';
+import ViewDeliver from './components/ReadData/View_Deliver';
 
 //Dhananjaya
 import SupplierQuotationComponent from "./components/SupplierQuotation/SupplierQuotation.page";
@@ -62,6 +63,7 @@ const App = () => {
             <Route exact path="/viewaccountant" component={ViewAccountant}/>
             <Route exact path="/viewsitemanager" component={ViewSiteManager}/>
             <Route exact path="/viewpayment" component={ViewPayment}/>
+            <Route exact path="/viewdeliver" component={ViewDeliver}/>
             
             <Route exact path="/supplierapply" component={Apply}/>
             <Route exact path="/accountantregister" component={AccountantRegister}/>

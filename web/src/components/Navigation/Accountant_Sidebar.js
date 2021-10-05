@@ -69,7 +69,7 @@ const accountantLogoutHandler = () =>{
                         <li><a href="#"><i className="fa fa-coins"></i>&nbsp;&nbsp;Accountant Login</a></li>
                         <li><a href="#"><i className="fas fa-truck"></i>&nbsp;&nbsp;Apply to be a supplier</a></li>
                         <li><a href="/payment"><i className="fas fa-city"></i>&nbsp;&nbsp;Our Sites</a></li>
-                        <li><a href="#"  onClick={accountantLogoutHandler} ><i className="fa fa-power-off"></i>Sign Out</a></li>
+                        <li><a href="#"  onClick={accountantLogoutHandler} ><i className="fa fa-power-off"></i>&nbsp;&nbsp;Sign Out</a></li>
                     </ul>
                 </nav>
 
