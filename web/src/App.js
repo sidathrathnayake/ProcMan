@@ -71,9 +71,9 @@ const App = () => {
             <Route exact path="/supplierregister/:id" component={SupplierRegister}/>
 
             <Route exact path="/payment" component={Stripe_Container}/>
-            <Route exact path="/add_raised_order" component={Add_Raised_Orders}/>
-            <Route exact path="/approve_order" component={Approve_Order}/>
-            <Route exact path="/reject_order" component={Reject_Order}/>
+            <Route exact path="/add_raised_order/:order_id" component={Add_Raised_Orders}/>
+            <Route exact path="/approve_order/:order_id" component={Approve_Order}/>
+            <Route exact path="/reject_order/:order_id" component={Reject_Order}/>
             <Route exact path="/view_all_orders" component={View_All_Orders}/>
             <Route exact path="/view_approved_orders" component={View_Approved_Orders}/>
             <Route exact path="/view_pending_orders" component={View_Pending_Orders}/>

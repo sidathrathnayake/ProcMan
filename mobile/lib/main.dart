@@ -7,6 +7,7 @@ import 'package:mobile/sitemanager_inventry_dashboard.dart';
 import 'package:mobile/sitemanager_order_dashboard.dart';
 import 'package:mobile/sitemanager_signin.dart';
 import 'package:mobile/sitemanager_view_inventry_new.dart';
+import 'package:mobile/supplie_update_price.dart';
 import 'package:mobile/supplier_dashboard.dart';
 import 'package:mobile/supplier_signin.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SupplierDashboard(),
+      home: Suppier_update_price(),
     );
   }
 }

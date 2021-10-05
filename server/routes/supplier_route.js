@@ -6,6 +6,8 @@ const Error = require('../utils/error_response');
 const sendEmail = require('../utils/send_email');
 const  { getPrivateData }  = require('../middleware/private_error');
 const { protect }  =  require('../middleware/supplier_protect');
+const purchesOrder = require('../models/purchase_order_model');
+const Supplier = require('../models/Supplier');
 
 //Protecion
 router.get('/supplier', protect,getPrivateData);
@@ -194,6 +196,24 @@ router.put('/update-rating/:id/:rate', async (req, res)=>{
         })
     }
 
+})
+
+router.get('/get-supplier/:email', async (req, res) => {
+    console.log(req.params.email);
+    try {
+        await Supplier.findOne({supplierEmail:req.params.email})
+        .then(data => {
+            res.status(200).send({
+                success:true,
+                data:data
+            })
+        })
+    } catch (error) {
+        res.status(500).send({
+            success:false,
+            message:error.message
+        })
+    }
 })
 
 module.exports = router;

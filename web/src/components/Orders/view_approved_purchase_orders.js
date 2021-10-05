@@ -19,24 +19,28 @@ export default class View_Approved_Orders extends Component {
         })
     }
 
-    // search() {
-    //     var input, filter, table, tr, td, i, txtValue;
-    //     input = document.getElementById("orderSearch");
-    //     filter = input.value.toUpperCase();
-    //     table = document.getElementById("orderTable");
-    //     tr = table.getElementsByTagName("tr");
-    //     for (i = 0; i < tr.length; i++) {
-    //         td = tr[i].getElementsByTagName("td")[0];
-    //         if (td) {
-    //         txtValue = td.textContent || td.innerText;
-    //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    //             tr[i].style.display = "";
-    //         } else {
-    //             tr[i].style.display = "none";
-    //         }
-    //         }       
-    //     }
-    //   }
+    search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("orderSearch");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("orderTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+    }
+
+    navigateToRaiseOrderPage(e, order_id) {
+        window.location = `/add_raised_order/${order_id}`
+    }
     
 
     render() {
@@ -112,7 +116,7 @@ export default class View_Approved_Orders extends Component {
                                         </td>
                                         <td>
                                             <div>
-                                                <button className="btn btn-success">Raise Order</button>
+                                                <button className="btn btn-success" onClick={e => this.navigateToApproveOrderPage(e, item.order_id)}>Raise Order</button>
                                             </div>
                                         </td>
                                     </tr>
