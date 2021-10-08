@@ -20,7 +20,7 @@ export default class Accountant_Home extends Component {
 
         <div className="cards-container" style={{marginTop: "3%"}}>
           <div className="cards">
-            <a href="/vieworderaccountant">
+            <a href="/viewdeliver">
               <div className="cards-body" >
                 <div className="card-container">
                   <img className="card-image" src={card1} alt="Card" />

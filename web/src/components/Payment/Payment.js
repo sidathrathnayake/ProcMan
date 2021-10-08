@@ -102,6 +102,7 @@ const onSubmit = () => {
                 value={payment.supplierEmail}
                 onChange={handleInputChange}
                 name="supplierEmail"
+                placeholder="Enter Supplier Email"
                 required
               ></input>
             </div>
@@ -113,6 +114,7 @@ const onSubmit = () => {
                 id="orderID"
                 value={payment.orderID}
                 onChange={handleInputChange}
+                placeholder="Enter Order ID"
                 name="orderID"
                 required
               ></input>
@@ -126,6 +128,7 @@ const onSubmit = () => {
                 value={payment.itemName}
                 onChange={handleInputChange}
                 name="itemName"
+                placeholder="Enter Item Name"
                 required
               ></input>
             </div>
@@ -138,6 +141,7 @@ const onSubmit = () => {
                 value={payment.orderItemCount}
                 onChange={handleInputChange}
                 name="orderItemCount"
+                placeholder="Enter Received item count"
                 required
               ></input>
             </div>
@@ -150,6 +154,7 @@ const onSubmit = () => {
                 value={payment.orderPayment}
                 onChange={handleInputChange}
                 name="orderPayment"
+                placeholder="Enter final payment"
                 required
               ></input>
             </div>

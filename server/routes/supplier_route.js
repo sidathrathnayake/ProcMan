@@ -6,6 +6,8 @@ const Error = require('../utils/error_response');
 const sendEmail = require('../utils/send_email');
 const  { getPrivateData }  = require('../middleware/private_error');
 const { protect }  =  require('../middleware/supplier_protect');
+const purchesOrder = require('../models/purchase_order_model');
+const Supplier = require('../models/Supplier');
 
 //Protecion
 router.get('/supplier', protect,getPrivateData);
@@ -57,8 +59,9 @@ router.post('/supplier/supplierlogin',async (req,res,next) =>{
     
     const supplierEmail = req.body.supplierEmail
     const supplierPassword = req.body.supplierPassword;
-
+    console.log(supplierEmail,supplierPassword);
     if(!supplierEmail || !supplierPassword){
+    
         return next(new Error("Please provide an Email and Password...!",400));
     }
 
@@ -74,7 +77,7 @@ router.post('/supplier/supplierlogin',async (req,res,next) =>{
         if(!isMatch){
             return next(new Error("Invalid Password...!",401));
         }
-
+        
         sendToken(supplier, 200, res);
 
     } catch (error) {
@@ -102,6 +105,20 @@ router.get('/supplier/supplierdata/:id',(req,res) =>{
     supplierModel.findById(supplierid,(err, supplier) => {
         if(err){
             return next(new Error("Can not find a supplier with this id...!",400));
+        }
+        return res.status(200).json({
+            success:true,
+            supplier
+        });
+    })
+})
+
+// Retrive specific data by item name
+router.get('/supplier/supplierdata2/:itemName',(req,res) =>{
+    const itemName = req.params.itemName;
+    supplierModel.findOne(itemName,(err, supplier) => {
+        if(err){
+            return next(new Error("Can not find a supplier with this item name...!",400));
         }
         return res.status(200).json({
             success:true,
@@ -179,6 +196,24 @@ router.put('/update-rating/:id/:rate', async (req, res)=>{
         })
     }
 
+})
+
+router.get('/get-supplier/:email', async (req, res) => {
+    console.log(req.params.email);
+    try {
+        await Supplier.findOne({supplierEmail:req.params.email})
+        .then(data => {
+            res.status(200).send({
+                success:true,
+                data:data
+            })
+        })
+    } catch (error) {
+        res.status(500).send({
+            success:false,
+            message:error.message
+        })
+    }
 })
 
 module.exports = router;

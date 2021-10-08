@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/sitemanager_auth.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
 import 'package:mobile/Sitemanager.dart';
@@ -22,36 +23,10 @@ class SitemanagerSignIn extends StatefulWidget {
 class _SitemanagerSignInState extends State<SitemanagerSignIn> {
   final _formKey = GlobalKey<FormState>();
 
- Sitemanager user = Sitemanager("", "", "", "", "");
-
-  Future save(sitemanagerEmail, sitemanagerPassword) async {
-    Map data = {
-      'sitemanagerEmail': user.sitemanagerEmail,
-      'sitemanagerPassword': user.sitemanagerPassword
-    };
-    try {
-      final res = await http.post(
-        Uri.parse("http://localhost:5000/sitemanager/sitemanagerlogin"),
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8'
-        },
-      );
-
-      body:data;
-    } catch (e) {
-      Fluttertoast.showToast(
-          msg: "Error occured",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 4,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }
-  }
+  var sitemanagerEmail, sitemanagerToken, sitemanagerPassword;
 
   Color textfieldcolor = Colors.blue;
- 
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -101,9 +76,9 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
                                 controller: TextEditingController(
-                                    text: user.sitemanagerEmail),
+                                    text: sitemanagerEmail),
                                 onChanged: (value) {
-                                  user.sitemanagerEmail = value;
+                                  sitemanagerEmail = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -158,9 +133,9 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                               padding: const EdgeInsets.all(16.0),
                               child: TextFormField(
                                 controller: TextEditingController(
-                                    text: user.sitemanagerPassword),
+                                    text:sitemanagerPassword),
                                 onChanged: (value) {
-                                  user.sitemanagerPassword = value;
+                                  sitemanagerPassword = value;
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -219,21 +194,21 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                                             BorderRadius.circular(30.0)),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
-                                        save(user.sitemanagerEmail,
-                                                user.sitemanagerPassword)
-                                            .then((value) {
-                                          if (value.save['success']) {
-                                            var token =
-                                                value.data['sitemanagerToken'];
+                                        AuthService()
+                                            .login(sitemanagerEmail,
+                                                sitemanagerPassword)
+                                            .then((val) {
+                                          if (val.data['success']) {
+                                            sitemanagerToken =
+                                                val.data['token'];
                                             Fluttertoast.showToast(
-                                                msg: "Logged in Successfully",
+                                                msg: "Authenticated",
                                                 toastLength: Toast.LENGTH_SHORT,
                                                 gravity: ToastGravity.CENTER,
-                                                timeInSecForIosWeb: 1,
+                                                timeInSecForIosWeb: 4,
                                                 backgroundColor: Colors.red,
                                                 textColor: Colors.white,
                                                 fontSize: 16.0);
-
                                             Navigator.push(
                                                 context,
                                                 new MaterialPageRoute(
@@ -241,24 +216,17 @@ class _SitemanagerSignInState extends State<SitemanagerSignIn> {
                                                         SitemanagerDashboard()));
                                           } else {
                                             Fluttertoast.showToast(
-                                                msg:
-                                                    "Invalid Password or Email! Please try again.",
+                                                msg: "Failed",
                                                 toastLength: Toast.LENGTH_SHORT,
                                                 gravity: ToastGravity.CENTER,
-                                                timeInSecForIosWeb: 1,
+                                                timeInSecForIosWeb: 4,
                                                 backgroundColor: Colors.red,
                                                 textColor: Colors.white,
                                                 fontSize: 16.0);
-
-                                            Navigator.push(
-                                                context,
-                                                new MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        SitemanagerSignIn()));
                                           }
                                         });
                                       } else {
-                                        print("no");
+                                        print("Email or Password ");
                                       }
                                     },
                                     child: Text(

@@ -24,7 +24,23 @@ import SiteManagerRegister from './components/Register/SiteManager_Register';
 import SupplierRegister from './components/Register/Supplier_Register';
 import ViewSupplier from './components/ReadData/View_Supplier';
 import AccountantHome from './components/Home/Accountant_Home';
+import ViewDeliver from './components/ReadData/View_Deliver';
+
+//Dhananjaya
+import SupplierQuotationComponent from "./components/SupplierQuotation/SupplierQuotation.page";
+
+//Import css
+import "./css/sidebar.css";
+import "./css/font.css";
 import Stripe_Container from './components/Payment/Stripe_Container';
+
+//Yathushan
+import Add_Raised_Orders from './components/Orders/add_raised_order';
+import Approve_Order from './components/Orders/approveOrder';
+import Reject_Order from './components/Orders/rejectOrder';
+import View_All_Orders from './components/Orders/view_all_purchase_orders';
+import View_Approved_Orders from './components/Orders/view_approved_purchase_orders';
+import View_Pending_Orders from './components/Orders/view_pending_purchase_orders';
 
 
 const App = () => {
@@ -37,6 +53,7 @@ const App = () => {
             <Route exact path="/" component={Welcome}/>
             <Route exact path="/adminhome" component={AdminHome}/>
             <Route exact path="/accountanthome" component={AccountantHome}/>
+            <Route exact path="/supplier-quotation" component={SupplierQuotationComponent}/>
 
             <Route exact path="/adminlogin" component={AdminLogin}/>
             <Route exact path="/accountantlogin" component={AccountantLogin}/>
@@ -46,6 +63,7 @@ const App = () => {
             <Route exact path="/viewaccountant" component={ViewAccountant}/>
             <Route exact path="/viewsitemanager" component={ViewSiteManager}/>
             <Route exact path="/viewpayment" component={ViewPayment}/>
+            <Route exact path="/viewdeliver" component={ViewDeliver}/>
             
             <Route exact path="/supplierapply" component={Apply}/>
             <Route exact path="/accountantregister" component={AccountantRegister}/>
@@ -53,7 +71,12 @@ const App = () => {
             <Route exact path="/supplierregister/:id" component={SupplierRegister}/>
 
             <Route exact path="/payment" component={Stripe_Container}/>
-            
+            <Route exact path="/add_raised_order/:order_id" component={Add_Raised_Orders}/>
+            <Route exact path="/approve_order/:order_id" component={Approve_Order}/>
+            <Route exact path="/reject_order/:order_id" component={Reject_Order}/>
+            <Route exact path="/view_all_orders" component={View_All_Orders}/>
+            <Route exact path="/view_approved_orders" component={View_Approved_Orders}/>
+            <Route exact path="/view_pending_orders" component={View_Pending_Orders}/>
             
         </Switch>   
       </div>
