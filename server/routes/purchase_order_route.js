@@ -25,6 +25,7 @@ router.post("/site-manager-approve", (req, res) => {
     total_amount: req.body.total_amount,
     damaged: req.body.damaged,
     supplier_note: req.body.supplier_note,
+    date : new Date()
     //Number(req.body.required.unit_price * req.body.required_quantities)
   });
   const newOrderPurchase1 = new Purchase_order({
@@ -41,6 +42,7 @@ router.post("/site-manager-approve", (req, res) => {
     total_amount: req.body.total_amount,
     damaged: req.body.damaged,
     supplier_note: req.body.supplier_note,
+    date : new Date()
     //Number(req.body.required.unit_price * req.body.required_quantities)
   });
   try {
@@ -128,7 +130,8 @@ router.route("/sm-approved-orders/:site_name").get((req, res) => {
   try {
     let site_name = req.params.site_name;
     let status = req.params.status;
-    Purchase_order.find({ site_name: site_name, status: "Approved" }).then(
+    var  mysort = { date: -1 };  
+    Purchase_order.find({ site_name: site_name, status: "Approved" }).sort(mysort).then(
       (purchase_order) => {
         res.status(200).json(purchase_order);
         console.log(
@@ -146,7 +149,8 @@ router.route("/sm-pending-orders/:site_name").get((req, res) => {
   try {
     let site_name = req.params.site_name;
     let status = req.params.status;
-    Purchase_order.find({ site_name: site_name, status: "Pending" }).then(
+    var  mysort = { date: -1 };
+    Purchase_order.find({ site_name: site_name, status: "Pending" }).sort(mysort).then(
       (purchase_order) => {
         res.status(200).json(purchase_order);
         console.log(
@@ -164,7 +168,8 @@ router.route("/sm-reject-orders/:site_name").get((req, res) => {
   try {
     let site_name = req.params.site_name;
     let status = req.params.status;
-    Purchase_order.find({ site_name: site_name, status: "Reject" }).then(
+    var  mysort = { date: -1 };
+    Purchase_order.find({ site_name: site_name, status: "Reject" }).sort(mysort).then(
       (purchase_order) => {
         res.status(200).json(purchase_order);
         console.log(

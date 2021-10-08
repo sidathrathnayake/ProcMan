@@ -1,32 +1,49 @@
 // ignore: unused_import
 class Order {
-  String order_id;
-  String item_name;
-  String supplier_name;
-  String site_name;
-  String priority;
-  String measuring_unit;
-  String required_quantities;
-  String note;
-  String status;
-  String delivery_address;
-  String total_amount;
-  String damaged;
-  String supplier_note;
+  final String order_id;
+  final String item_name;
+  final String supplier_name;
+  final String site_name;
+  final String priority;
+  final String measuring_unit;
+  final String required_quantities;
+  final String note;
+  final String status;
+  final String delivery_address;
+  final String total_amount;
+  final String damaged;
+  final String supplier_note;
 
   Order(
-    this.order_id,
-    this.item_name,
-    this.supplier_name,
-    this.site_name,
-    this.priority,
-    this.required_quantities,
-    this.measuring_unit,
-    this.note,
-    this.status,
-    this.delivery_address,
-    this.total_amount,
-    this.damaged,
-    this.supplier_note
-  );
+      {required this.order_id,
+      required this.item_name,
+      required this.supplier_name,
+      required this.site_name,
+      required this.priority,
+      required this.required_quantities,
+      required this.measuring_unit,
+      required this.note,
+      required this.status,
+      required this.delivery_address,
+      required this.total_amount,
+      required this.damaged,
+      required this.supplier_note});
+
+  factory Order.fromJson(Map<String, dynamic> json) {
+    return Order(
+      order_id: json['order_id'],
+      item_name: json['item_name'],
+      supplier_name: json['supplier_name'],
+      site_name: json['site_name'],
+      priority: json['priority'],
+      required_quantities: json['required_quantities'],
+      measuring_unit: json['measuring_unit'],
+      note: json['note'],
+      status: json['status'],
+      delivery_address: json['delivery_address'],
+      total_amount: json['total_amount'],
+      damaged: json['damaged'],
+      supplier_note: json['supplier_note'],
+    );
+  }
 }

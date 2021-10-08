@@ -53,6 +53,10 @@ const purchase_order_schema = new Schema({
   supplier_note : {
     type : String,
     required : false
+  },
+  date : {
+    type : String,
+    required : true
   }
 });
 

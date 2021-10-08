@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/sitemanager_order.dart';
 import 'package:mobile/sitemanager_order_dashboard.dart';
+import 'package:mobile/sitemanager_order_model.dart';
 import 'package:mobile/supplier_dashboard.dart';
 
 import 'package:mobile/suppliers.dart';
@@ -53,7 +54,7 @@ class _SitemanagerCreateOrderState extends State<SitemanagerCreateOrder> {
   }
   
   Color textfieldcolor = Colors.blue;
-  Order order = Order("", "", "", "", "", "", "", "", "", "", "" ,"","");
+  OrderModel order = OrderModel("", "", "", "", "", "", "", "", "", "", "" ,"","");
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
